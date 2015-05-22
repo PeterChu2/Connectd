@@ -30,7 +30,7 @@ public class AuthenticatedHomeActivity extends Activity {
         Instagram instagramClient = SocialApiClients.getInstagram();
         instagramClient.setUserRelationship(USER_ID, Relationship.FOLLOW);
 
-        PlusDomains plusDomainsClient = SocialApiClients.getGPlus();=
+        PlusDomains plusDomainsClient = SocialApiClients.getGPlus();
         List<String> addUserIds = new ArrayList<String>();
         addUserIds.add(userId);
         PlusDomains.Circles.AddPeople addPeople = plusDomainsClient.circles().addPeople(circleId);

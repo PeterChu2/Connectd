@@ -11,6 +11,8 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.plusDomains.PlusDomains;
+import com.google.code.linkedinapi.client.LinkedInApiClient;
+import com.google.code.linkedinapi.client.LinkedInApiClientFactory;
 
 import org.jinstagram.Instagram;
 import org.jinstagram.auth.InstagramAuthService;
@@ -34,11 +36,7 @@ import twitter4j.conf.ConfigurationBuilder;
  * Created by peter on 22/05/15.
  */
 public class SocialApiClients {
-    FACEBOOK_APP_ID=1572924836313003
     FACEBOOK_APP_SECRET=4ee26bcb519450184d31917305b63357
-
-            LINKEDIN_APP_ID=77ew7bvhr0i9jf;
-            LINKEDIN_APP_SECRET=I5cH7FWjwqYGzno9;
 
     GPLUS_APP_ID=303584122338-26s78h7upkk6jmb3g9alsvfr5635hfh2.apps.googleusercontent.com
             GPLUS_APP_SECRET=K4nyOYBhBuEiLJFUx1ITMer9
@@ -112,5 +110,10 @@ public class SocialApiClients {
                         new java.io.File(SERVICE_ACCOUNT_PKCS12_FILE_PATH))
                 .build();
         return plusDomain;
+    }
+
+    public static LinkedInApiClient getLinkedIn() {
+        final LinkedInApiClientFactory factory = LinkedInApiClientFactory.newInstance("77ew7bvhr0i9jf", "I5cH7FWjwqYGzno9");
+        final LinkedInApiClient client = factory.createLinkedInApiClient(accessTokenValue, tokenSecretValue);
     }
 }
