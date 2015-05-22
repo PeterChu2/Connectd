@@ -24,6 +24,7 @@ public class SignInActivity extends Activity {
     }
 
     private void signIn() {
+        // TO DO: get user info from the server, and set the current user in User.class
         startActivity(new Intent(this, AuthenticatedHomeActivity.class));
     }
     

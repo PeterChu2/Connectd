@@ -7,6 +7,8 @@ import java.util.Set;
  * Model object for a user - contains all Authentication data
  */
 public class User {
+
+    private int mId;
     private String mName;
     private String mTwitterUsername;
     private String mFacebookUsername;
@@ -14,9 +16,17 @@ public class User {
     private String mGPlusId;
     private String mLinkedInId;
     private Set<Authorization> mAuthorizations;
+    private static User sCurrentUser;
 
-    private User(String name, String twitterUsername, String facebookUsername, String instagramId,
-                 String gPlusId, String linkedInId, Set<Authorization> authorizations) {
+    private User(int id,
+                 String name,
+                 String twitterUsername,
+                 String facebookUsername,
+                 String instagramId,
+                 String gPlusId,
+                 String linkedInId,
+                 Set<Authorization> authorizations) {
+        mId = id;
         mName = name;
         mTwitterUsername = twitterUsername;
         mFacebookUsername = facebookUsername;
@@ -26,7 +36,12 @@ public class User {
         mAuthorizations = authorizations;
     }
 
+    public static User findById(int id) {
+        return null;
+    }
+
     public static class Builder {
+        private int mId;
         private String mName;
         private String mTwitterUsername;
         private String mFacebookUsername;
@@ -35,8 +50,9 @@ public class User {
         private String mLinkedInId;
         private Set<Authorization> mAuthorizations;
 
-        public Builder() {
+        public Builder(int id) {
             mAuthorizations = new HashSet<Authorization>();
+            mId = id;
         }
 
         public Builder setName(String name) {
@@ -52,32 +68,61 @@ public class User {
 
         public Builder setTwitterUsername(String twitterUsername) {
             mTwitterUsername = twitterUsername;
+            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.TWITTER, twitterUsername));
             return this;
         }
 
         public Builder setInstagramId(String instagramId) {
             mInstagramId = instagramId;
+            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.INSTAGRAM, instagramId));
             return this;
         }
 
         public Builder setGPlusId(String gPlusId) {
             mGPlusId = gPlusId;
+            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.GPLUS, gPlusId));
             return this;
         }
 
         public Builder setLinkedInId(String linkedInId) {
             mLinkedInId = linkedInId;
+            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.LINKEDIN, linkedInId));
             return this;
         }
 
         public User build() {
-            return new User(mName, mTwitterUsername, mFacebookUsername, mInstagramId,
+            return new User(mId, mName, mTwitterUsername, mFacebookUsername, mInstagramId,
                     mGPlusId, mLinkedInId, mAuthorizations);
         }
     }
 
-    public static Builder createBuilder() {
-        return new Builder();
+    public static Builder createBuilder(int id) {
+        return new Builder(id);
+    }
+
+    public static void setCurrentUser(User user) {
+        sCurrentUser = user;
+    }
+
+    /**
+     * Returns the user that is logged in. Will return null if not logged in.
+     * @return the current user
+     */
+    public static User getCurrentUser() {
+        return sCurrentUser;
+    }
+
+    /**
+     * Returns whether the user is logged in.
+     * @return the logged in state of the user.
+     */
+    public static boolean isLoggedIn() {
+        return sCurrentUser == null;
+    }
+
+    public int getId() {
+        return 12345;
+//        return mId;
     }
 
     public String getName() {
@@ -102,6 +147,31 @@ public class User {
 
     public String getLinkedInId() {
         return mLinkedInId;
+    }
+
+
+    public void setLinkedInId(String linkedInId) {
+        mLinkedInId = linkedInId;
+    }
+
+    public void setGPlusId(String gPlusId) {
+        mGPlusId = gPlusId;
+    }
+
+    public void setInstagramId(String instagramId) {
+        mInstagramId = instagramId;
+    }
+
+    public void setFacebookUsername(String facebookUsername) {
+        mFacebookUsername = facebookUsername;
+    }
+
+    public void setTwitterUsername(String twitterUsername) {
+        mTwitterUsername = twitterUsername;
+    }
+
+    public void setName(String name) {
+        mName = name;
     }
 
     public Set<Authorization> getAuthorizations() {

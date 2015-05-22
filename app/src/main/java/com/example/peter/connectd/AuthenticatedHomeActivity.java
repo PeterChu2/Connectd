@@ -1,7 +1,13 @@
 package com.example.peter.connectd;
 
 import android.app.Activity;
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
+import android.nfc.NfcAdapter;
+import android.nfc.NfcEvent;
 import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.api.services.plusDomains.PlusDomains;
 import com.google.api.services.plusDomains.model.Circle;
@@ -27,72 +33,27 @@ import twitter4j.TwitterException;
 /**
  * Created by peter on 22/05/15.
  */
-public class AuthenticatedHomeActivity extends Activity {
+public class AuthenticatedHomeActivity extends Activity implements NfcAdapter.CreateNdefMessageCallback{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.authenticated_home);
-    }
-
-    private void sendInvitation(User user) {
-        for (User.Authorization authorization : user.getAuthorizations()) {
-            switch (authorization.getSocialMediaName()) {
-                case FACEBOOK:
-                    break;
-                case TWITTER:
-                    Twitter twitterClient = SocialApiClients.getTwitter(this);
-                    try {
-                        twitterClient.createFriendship(authorization.getIdentifier());
-                    } catch (TwitterException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                case GPLUS:
-                    PlusDomains plusDomainsClient = SocialApiClients.getGPlus(this);
-                    List<String> addUserIds = new ArrayList<String>();
-                    addUserIds.add(authorization.getIdentifier());
-                    try {
-                        PlusDomains.Circles.List listCircles = plusDomainsClient.circles().list("me");
-                        listCircles.setMaxResults(1L);
-                        CircleFeed circleFeed = listCircles.execute();
-                        List<Circle> circles = circleFeed.getItems();
-                        Iterator<Circle> itr = circles.iterator();
-                        while(itr.hasNext()) {
-                            Circle circle = itr.next();
-                            PlusDomains.Circles.AddPeople addPeople = plusDomainsClient.circles().addPeople(circle.getId());
-                            addPeople.setUserId(addUserIds);
-                            addPeople.execute();
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                case INSTAGRAM:
-                        Instagram instagramClient = SocialApiClients.getInstagram();
-                    try {
-                        UserFeed userFeed = instagramClient.searchUser(String.format("username=%s", authorization.getIdentifier()));
-                        long userId = userFeed.getUserList().get(0).getId();
-                        instagramClient.setUserRelationship(userId, Relationship.FOLLOW);
-                    } catch (InstagramException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                case LINKEDIN:
-                    LinkedInApiClient linkedInApiClient = SocialApiClients.getLinkedIn(this);
-                    Person person = linkedInApiClient.getProfileForCurrentUser();
-                    String authHeader = "";
-                    for(HttpHeader header : person.getApiStandardProfileRequest().getHeaders().getHttpHeaderList()) {
-                        if(ApplicationConstants.AUTH_HEADER_NAME.equals(header.getName())) {
-                            authHeader = header.getName();
-                        }
-                    }
-                    linkedInApiClient.sendInviteById(authorization.getIdentifier(),
-                            "Invitation to connect", "Please add me to your network. Invitation sent from Connectd",
-                            authHeader);
-                    break;
-            }
+        TextView textView = (TextView) findViewById(R.id.instructions_text_view);
+        NfcAdapter mAdapter = NfcAdapter.getDefaultAdapter(this);
+        if (mAdapter == null) {
+            textView.setText("Sorry this device does not have NFC.");
+            return;
         }
-
+        if (!mAdapter.isEnabled()) {
+            Toast.makeText(this, "Please enable NFC via Settings.", Toast.LENGTH_LONG).show();
+        }
+        mAdapter.setNdefPushMessageCallback(this, this);
     }
 
+    @Override
+    public NdefMessage createNdefMessage(NfcEvent event) {
+        String message = String.valueOf(User.getCurrentUser().getId());
+        NdefRecord ndefRecord = NdefRecord.createMime("text/plain", message.getBytes());
+        NdefMessage ndefMessage = new NdefMessage(ndefRecord);
+        return ndefMessage;
+    }
 }
