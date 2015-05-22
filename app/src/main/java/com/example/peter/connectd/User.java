@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by peter on 22/05/15.
+ * Model object for a user - contains all Authentication data
  */
 public class User {
     private String mName;

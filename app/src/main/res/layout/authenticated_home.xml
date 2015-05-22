@@ -25,12 +25,13 @@
             android:layout_alignParentLeft="true"/>
         <EditText
             android:id="@+id/pin_edit_text"
-            android:layout_width="200dp"
+            android:layout_width="140dp"
             android:layout_gravity="end"
             android:layout_height="match_parent"
-            android:layout_alignRight="@id/pin_text_view"/>
+            android:layout_toRightOf="@+id/pin_text_view" />
         <Button
             android:id="@+id/verification_button"
+            android:text="@string/verify"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"/>
