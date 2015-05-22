@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Connectd</string>
     <string name="instructions">To get started, enable NFC and hold your phone up back-to-back against your friend\'s phone</string>
+    <string name="facebook_app_id">APP_ID_HERE</string>
 </resources>
