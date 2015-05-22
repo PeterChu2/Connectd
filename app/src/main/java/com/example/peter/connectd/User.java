@@ -1,7 +1,5 @@
 package com.example.peter.connectd;
 
-import com.google.api.services.plusDomains.PlusDomains;
-
 import java.util.HashSet;
 import java.util.Set;
 

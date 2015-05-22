@@ -12,10 +12,13 @@ import com.google.code.linkedinapi.schema.HttpHeader;
 import com.google.code.linkedinapi.schema.Person;
 
 import org.jinstagram.Instagram;
+import org.jinstagram.entity.users.feed.UserFeed;
+import org.jinstagram.exceptions.InstagramException;
 import org.jinstagram.model.Relationship;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import twitter4j.Twitter;
@@ -45,7 +48,7 @@ public class AuthenticatedHomeActivity extends Activity {
                     }
                     break;
                 case GPLUS:
-                    PlusDomains plusDomainsClient = SocialApiClients.getGPlus();
+                    PlusDomains plusDomainsClient = SocialApiClients.getGPlus(this);
                     List<String> addUserIds = new ArrayList<String>();
                     addUserIds.add(authorization.getIdentifier());
                     try {
@@ -53,22 +56,29 @@ public class AuthenticatedHomeActivity extends Activity {
                         listCircles.setMaxResults(1L);
                         CircleFeed circleFeed = listCircles.execute();
                         List<Circle> circles = circleFeed.getItems();
-                        for(circle : circles) {
-                            PlusDomains.Circles.AddPeople addPeople = plusDomainsClient.circles().addPeople(listCircles.getUserId());
+                        Iterator<Circle> itr = circles.iterator();
+                        while(itr.hasNext()) {
+                            Circle circle = itr.next();
+                            PlusDomains.Circles.AddPeople addPeople = plusDomainsClient.circles().addPeople(circle.getId());
                             addPeople.setUserId(addUserIds);
                             addPeople.execute();
                         }
-
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     break;
                 case INSTAGRAM:
                         Instagram instagramClient = SocialApiClients.getInstagram();
-                        instagramClient.setUserRelationship(authorization.getIdentifier(), Relationship.FOLLOW);
+                    try {
+                        UserFeed userFeed = instagramClient.searchUser(String.format("username=%s", authorization.getIdentifier()));
+                        long userId = userFeed.getUserList().get(0).getId();
+                        instagramClient.setUserRelationship(userId, Relationship.FOLLOW);
+                    } catch (InstagramException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case LINKEDIN:
-                    LinkedInApiClient linkedInApiClient = SocialApiClients.getLinkedIn();
+                    LinkedInApiClient linkedInApiClient = SocialApiClients.getLinkedIn(this);
                     Person person = linkedInApiClient.getProfileForCurrentUser();
                     String authHeader = "";
                     for(HttpHeader header : person.getApiStandardProfileRequest().getHeaders().getHttpHeaderList()) {
@@ -78,7 +88,7 @@ public class AuthenticatedHomeActivity extends Activity {
                     }
                     linkedInApiClient.sendInviteById(authorization.getIdentifier(),
                             "Invitation to connect", "Please add me to your network. Invitation sent from Connectd",
-                            );
+                            authHeader);
                     break;
             }
         }

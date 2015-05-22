@@ -33,10 +33,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="authenticated_home.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="authenticated_home.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/authenticated_home.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.25">
+            <state vertical-scroll-proportion="0.16758747">
               <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
               <folding>
                 <element signature="e#845#858#0" expanded="true" />
@@ -53,63 +53,34 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/AuthenticatedHomeActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <caret line="72" column="65" selection-start-line="72" selection-start-column="65" selection-end-line="72" selection-end-column="65" />
               <folding>
-                <element signature="e#1770#1778#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#1904#1912#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlusDomains.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-plusDomains/v1-rev121-1.20.0/d8e7a9fa79d2f6217edefa16aa2a87cf4cf2ae70/google-api-services-plusDomains-v1-rev121-1.20.0-sources.jar!/com/google/api/services/plusDomains/PlusDomains.java">
+      <file leaf-file-name="Instagram.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sachinhandiekar/jInstagram/1.0.3/4e8f6f12f0bd1bc664fbce51a7c9d333c8d34442/jInstagram-1.0.3-sources.jar!/org/jinstagram/Instagram.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1129" column="39" selection-start-line="1129" selection-start-column="39" selection-end-line="1129" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlusDomainsRequest.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-plusDomains/v1-rev121-1.20.0/d8e7a9fa79d2f6217edefa16aa2a87cf4cf2ae70/google-api-services-plusDomains-v1-rev121-1.20.0-sources.jar!/com/google/api/services/plusDomains/PlusDomainsRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0718232">
-              <caret line="108" column="47" selection-start-line="108" selection-start-column="30" selection-end-line="108" selection-end-column="47" />
+            <state vertical-scroll-proportion="62.964287">
+              <caret line="174" column="28" selection-start-line="174" selection-start-column="23" selection-end-line="174" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1226#1227#0" expanded="true" />
-                <element signature="e#1296#1297#0" expanded="true" />
-                <element signature="e#2452#2453#0" expanded="true" />
-                <element signature="e#2488#2489#0" expanded="true" />
-                <element signature="e#2519#2520#0" expanded="true" />
-                <element signature="e#2547#2548#0" expanded="true" />
-                <element signature="e#2589#2590#0" expanded="true" />
-                <element signature="e#2628#2629#0" expanded="true" />
-                <element signature="e#2671#2672#0" expanded="true" />
-                <element signature="e#2711#2712#0" expanded="true" />
-                <element signature="e#2749#2750#0" expanded="true" />
-                <element signature="e#2784#2785#0" expanded="true" />
-                <element signature="e#2818#2819#0" expanded="true" />
-                <element signature="e#2849#2850#0" expanded="true" />
-                <element signature="e#2886#2887#0" expanded="true" />
-                <element signature="e#2920#2921#0" expanded="true" />
-                <element signature="e#2973#2974#0" expanded="true" />
-                <element signature="e#3011#3012#0" expanded="true" />
-                <element signature="e#3408#3409#0" expanded="true" />
-                <element signature="e#3455#3456#0" expanded="true" />
-                <element signature="e#3496#3497#0" expanded="true" />
-                <element signature="e#3538#3539#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -144,7 +115,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/SocialApiClients.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+              <caret line="138" column="33" selection-start-line="138" selection-start-column="25" selection-end-line="138" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -2219,7 +2190,7 @@
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943144" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2308,7 +2279,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
           <folding>
-            <element signature="e#1770#1778#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#1904#1912#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2571,36 +2543,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/authenticated_home.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.25">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-          <folding>
-            <element signature="e#845#858#0" expanded="true" />
-            <element signature="e#1650#1672#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-plusDomains/v1-rev121-1.20.0/d8e7a9fa79d2f6217edefa16aa2a87cf4cf2ae70/google-api-services-plusDomains-v1-rev121-1.20.0-sources.jar!/com/google/api/services/plusDomains/PlusDomainsRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-plusDomains/v1-rev121-1.20.0/d8e7a9fa79d2f6217edefa16aa2a87cf4cf2ae70/google-api-services-plusDomains-v1-rev121-1.20.0-sources.jar!/com/google/api/services/plusDomains/PlusDomains.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1129" column="39" selection-start-line="1129" selection-start-column="39" selection-end-line="1129" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/libs/linkedin-j-android.jar!/com/google/code/linkedinapi/schema/Headers.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1978022">
@@ -2617,56 +2559,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/AuthenticatedHomeActivity.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-plusDomains/v1-rev121-1.20.0/d8e7a9fa79d2f6217edefa16aa2a87cf4cf2ae70/google-api-services-plusDomains-v1-rev121-1.20.0-sources.jar!/com/google/api/services/plusDomains/PlusDomainsRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31523642">
+          <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-plusDomains/v1-rev121-1.20.0/d8e7a9fa79d2f6217edefa16aa2a87cf4cf2ae70/google-api-services-plusDomains-v1-rev121-1.20.0-sources.jar!/com/google/api/services/plusDomains/PlusDomains.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#1770#1778#0" expanded="true" />
-          </folding>
+          <caret line="1129" column="39" selection-start-line="1129" selection-start-column="39" selection-end-line="1129" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/SocialApiClients.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <caret line="138" column="33" selection-start-line="138" selection-start-column="25" selection-end-line="138" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/linkedin-j-android.jar!/com/google/code/linkedinapi/client/CommunicationsApiClient.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.92">
+          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0718232">
-          <caret line="108" column="47" selection-start-line="108" selection-start-column="30" selection-end-line="108" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1226#1227#0" expanded="true" />
-            <element signature="e#1296#1297#0" expanded="true" />
-            <element signature="e#2452#2453#0" expanded="true" />
-            <element signature="e#2488#2489#0" expanded="true" />
-            <element signature="e#2519#2520#0" expanded="true" />
-            <element signature="e#2547#2548#0" expanded="true" />
-            <element signature="e#2589#2590#0" expanded="true" />
-            <element signature="e#2628#2629#0" expanded="true" />
-            <element signature="e#2671#2672#0" expanded="true" />
-            <element signature="e#2711#2712#0" expanded="true" />
-            <element signature="e#2749#2750#0" expanded="true" />
-            <element signature="e#2784#2785#0" expanded="true" />
-            <element signature="e#2818#2819#0" expanded="true" />
-            <element signature="e#2849#2850#0" expanded="true" />
-            <element signature="e#2886#2887#0" expanded="true" />
-            <element signature="e#2920#2921#0" expanded="true" />
-            <element signature="e#2973#2974#0" expanded="true" />
-            <element signature="e#3011#3012#0" expanded="true" />
-            <element signature="e#3408#3409#0" expanded="true" />
-            <element signature="e#3455#3456#0" expanded="true" />
-            <element signature="e#3496#3497#0" expanded="true" />
-            <element signature="e#3538#3539#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sachinhandiekar/jInstagram/1.0.3/4e8f6f12f0bd1bc664fbce51a7c9d333c8d34442/jInstagram-1.0.3-sources.jar!/org/jinstagram/Instagram.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="62.964287">
+          <caret line="174" column="28" selection-start-line="174" selection-start-column="23" selection-end-line="174" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/AuthenticatedHomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="72" column="65" selection-start-line="72" selection-start-column="65" selection-end-line="72" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1904#1912#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/authenticated_home.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16758747">
+          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+          <folding>
+            <element signature="e#845#858#0" expanded="true" />
+            <element signature="e#1650#1672#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
   </component>
