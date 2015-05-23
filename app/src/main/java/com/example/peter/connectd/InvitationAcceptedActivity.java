@@ -57,7 +57,7 @@ public class InvitationAcceptedActivity extends Activity {
             if(friend != null) {
                 sendInvitation(friend);
             }
-            mTextView.setText(String.format("Received User data from friend with user ID: %i", friendId));
+            mTextView.setText(String.format("Received User data from friend with user ID: %d", friendId));
         }
     }
 

@@ -1,44 +1,31 @@
 package com.example.peter.connectd;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.api.services.plusDomains.PlusDomains;
-import com.google.api.services.plusDomains.model.Circle;
-import com.google.api.services.plusDomains.model.CircleFeed;
-import com.google.code.linkedinapi.client.LinkedInApiClient;
-import com.google.code.linkedinapi.client.constant.ApplicationConstants;
-import com.google.code.linkedinapi.schema.HttpHeader;
-import com.google.code.linkedinapi.schema.Person;
-
-import org.jinstagram.Instagram;
-import org.jinstagram.entity.users.feed.UserFeed;
-import org.jinstagram.exceptions.InstagramException;
-import org.jinstagram.model.Relationship;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
+import static android.nfc.NdefRecord.createMime;
 
 /**
  * Created by peter on 22/05/15.
  */
 public class AuthenticatedHomeActivity extends Activity implements NfcAdapter.CreateNdefMessageCallback{
+    NfcAdapter mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.authenticated_home);
         TextView textView = (TextView) findViewById(R.id.instructions_text_view);
-        NfcAdapter mAdapter = NfcAdapter.getDefaultAdapter(this);
+        mAdapter = NfcAdapter.getDefaultAdapter(this);
         if (mAdapter == null) {
             textView.setText("Sorry this device does not have NFC.");
             return;
@@ -50,10 +37,34 @@ public class AuthenticatedHomeActivity extends Activity implements NfcAdapter.Cr
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
     public NdefMessage createNdefMessage(NfcEvent event) {
-        String message = String.valueOf(User.getCurrentUser().getId());
-        NdefRecord ndefRecord = NdefRecord.createMime("text/plain", message.getBytes());
-        NdefMessage ndefMessage = new NdefMessage(ndefRecord);
-        return ndefMessage;
+        String text = String.valueOf(User.getCurrentUser().getId());
+        NdefMessage msg = new NdefMessage(
+                new NdefRecord[] { createMime(
+                        "application/vnd.com.example.peter.connectd", text.getBytes())
+                        ,NdefRecord.createApplicationRecord("com.example.peter.connectd")
+                });
+        return msg;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.settings:
+                Intent intent = new Intent(this,SettingsActivity.class);
+                startActivity(intent);
+        }
+        return true;
     }
 }
