@@ -17,10 +17,26 @@
         android:layout_centerInParent="true"
         android:padding="10dp"
         >
-        
-        
+
+		<EditText
+			android:id="@+id/sign_in_et_first_name"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@drawable/edittext_top_bg"
+			android:padding="10dp"
+			android:hint="First Name"
+			android:textColorHint="#bbbbbb" />
+		<EditText
+			android:id="@+id/sign_up_et_last_name"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@drawable/edittext_top_bg"
+			android:padding="10dp"
+			android:hint="Last Name"
+			android:textColorHint="#bbbbbb" />
+
     	<EditText 
-    	    	android:id="@+id/etEmail"
+    	    	android:id="@+id/sign_up_et_email"
 	       	android:layout_width="match_parent"
 	       	android:layout_height="wrap_content"
 	      	android:background="@drawable/edittext_top_bg"
@@ -29,7 +45,7 @@
 	        android:textColorHint="#bbbbbb"
 	        android:drawableLeft="@drawable/email"/>
     	<EditText 
-    	    	android:id="@+id/etUserName"
+    	    	android:id="@+id/sign_up_et_username"
 	       	android:layout_width="match_parent"
 	       	android:layout_height="wrap_content"
 	       	android:background="@drawable/edittext_default_bg"
@@ -39,7 +55,7 @@
 	        android:textColorHint="#bbbbbb"
 	        android:drawableLeft="@drawable/user"/>
     	<EditText 
-    	    	android:id="@+id/etPass"
+    	    	android:id="@+id/sign_up_et_password"
 	       	android:layout_width="match_parent"
 	       	android:layout_height="wrap_content"
 	       	android:background="@drawable/edittext_bottom_bg"
@@ -49,6 +65,17 @@
 	        android:textColorHint="#bbbbbb"
 	        android:password="true"
 	        android:drawableLeft="@drawable/password"/>
+		<EditText
+			android:id="@+id/sign_up_et_password_confirmation"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@drawable/edittext_bottom_bg"
+			android:layout_marginTop="-2dp"
+			android:padding="10dp"
+			android:hint="Password Confirmation"
+			android:textColorHint="#bbbbbb"
+			android:password="true"
+			android:drawableLeft="@drawable/password"/>
         <Button 
 	       	android:id="@+id/btnSingIn"
 	       	android:layout_width="match_parent"
