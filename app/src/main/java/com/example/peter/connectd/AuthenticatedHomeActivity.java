@@ -38,6 +38,7 @@ public class AuthenticatedHomeActivity extends Activity implements NfcAdapter.Cr
 
     @Override
     protected void onPause() {
+        mAdapter.setNdefPushMessageCallback(null, null);
         super.onPause();
     }
 
