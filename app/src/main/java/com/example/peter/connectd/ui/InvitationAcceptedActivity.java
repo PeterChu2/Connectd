@@ -62,7 +62,7 @@ public class InvitationAcceptedActivity extends Activity {
             if (friendLogin.contains("@")) {
                 friend = connectdApiService.findUserByEmail(friendLogin);
             } else if (!friendLogin.isEmpty()) {
-                friend = connectdApiService.findUserByUsername(friendLogin);
+                friend = connectdApiService.findUserByLogin(friendLogin);
             }
             if (friend != null) {
                 sendInvitation(friend);

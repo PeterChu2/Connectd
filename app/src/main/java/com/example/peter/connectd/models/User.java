@@ -18,6 +18,7 @@ public class User {
     public static final String LOGIN_KEY = "login";
     public static final String REMEMBER_ME_KEY = "remember_me";
     public static final String USER_KEY = "user";
+    public static final String ID_KEY = "id";
 
     private int mId;
     private String mName;
@@ -49,7 +50,10 @@ public class User {
 
     public static class Builder {
         private int mId;
-        private String mName;
+        private String mEmail;
+        private String mUsername;
+        private String mFirstName;
+        private String mLastName;
         private String mTwitterUsername;
         private String mFacebookUsername;
         private String mInstagramId;
@@ -62,8 +66,18 @@ public class User {
             mId = id;
         }
 
-        public Builder setName(String name) {
-            mName = name;
+        public Builder setFirstName(String name) {
+            mFirstName = name;
+            return this;
+        }
+
+        public Builder setLastName(String name) {
+            mLastName = name;
+            return this;
+        }
+
+        public Builder setUsername(String username) {
+            mUsername = username;
             return this;
         }
 
@@ -97,8 +111,13 @@ public class User {
             return this;
         }
 
+        public Builder setEmail(String email) {
+            mEmail = email;
+            return this;
+        }
+
         public User build() {
-            return new User(mId, mName, mTwitterUsername, mFacebookUsername, mInstagramId,
+            return new User(mId, mFirstName, mTwitterUsername, mFacebookUsername, mInstagramId,
                     mGPlusId, mLinkedInId, mAuthorizations);
         }
     }
@@ -130,60 +149,51 @@ public class User {
     public int getId() {
         return mId;
     }
-
     public String getName() {
         return mName;
     }
-
     public String getTwitterUsername() {
         return mTwitterUsername;
     }
-
     public String getFacebookUsername() {
         return mFacebookUsername;
     }
-
     public String getInstagramId() {
         return mInstagramId;
     }
-
     public String getgPlusId() {
         return mGPlusId;
     }
-
     public String getLinkedInId() {
         return mLinkedInId;
+    }
+    public Set<Authorization> getAuthorizations() {
+        return mAuthorizations;
     }
 
 
     public void setLinkedInId(String linkedInId) {
         mLinkedInId = linkedInId;
     }
-
     public void setGPlusId(String gPlusId) {
         mGPlusId = gPlusId;
     }
-
     public void setInstagramId(String instagramId) {
         mInstagramId = instagramId;
     }
-
     public void setFacebookUsername(String facebookUsername) {
         mFacebookUsername = facebookUsername;
     }
-
     public void setTwitterUsername(String twitterUsername) {
         mTwitterUsername = twitterUsername;
     }
-
     public void setName(String name) {
         mName = name;
     }
 
-    public Set<Authorization> getAuthorizations() {
-        return mAuthorizations;
-    }
-
+    /**
+     * Model Object to represent Authorization information for each social media platform
+     */
     public static class Authorization {
         SocialApiClients.SocialMediaName mSocialMediaName;
         String mIdentifier;

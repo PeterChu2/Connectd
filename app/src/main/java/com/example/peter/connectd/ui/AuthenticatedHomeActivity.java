@@ -39,7 +39,7 @@ public class AuthenticatedHomeActivity extends Activity implements NfcAdapter.Cr
         if(login != null && login.contains("@")) {
             mCurrentUser = mConnectedApiService.findUserByEmail(login);
         } else if(login != null) {
-            mCurrentUser = mConnectedApiService.findUserByUsername(login);
+            mCurrentUser = mConnectedApiService.findUserByLogin(login);
         }
 
         TextView textView = (TextView) findViewById(R.id.instructions_text_view);
