@@ -1,4 +1,4 @@
-package com.example.peter.connectd;
+package com.example.peter.connectd.ui;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -17,6 +17,8 @@ import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
 
+
+import com.example.peter.connectd.R;
 
 import java.util.List;
 

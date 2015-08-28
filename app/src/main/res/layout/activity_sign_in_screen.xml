@@ -2,52 +2,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" 
-    
-    android:background="#ffffff">
 
-    <LinearLayout 
-        android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="10dp"
-        >
-        
-        
-    	<EditText 
-    	    	android:id="@+id/sign_in_et_email"
-	       	android:layout_width="match_parent"
-	       	android:layout_height="wrap_content"
-	      	android:background="@drawable/edittext_top_bg"
-	        android:padding="10dp"
-	        android:hint="Email"
-	        android:textColorHint="#cccccc"
-	        android:drawableLeft="@drawable/email"/>
-    	<EditText 
-    	    	android:id="@+id/etPass"
-	       	android:layout_width="match_parent"
-	       	android:layout_height="wrap_content"
-	       	android:background="@drawable/edittext_bottom_bg"
-	       	android:layout_marginTop="-2dp"
-	        android:padding="10dp"
-	        android:hint="Password"
-	        android:textColorHint="#cccccc"
-	        android:password="true"
-	        android:drawableLeft="@drawable/password"/>
-        <Button 
-	       	android:id="@+id/btnSignIn"
-	       	android:layout_width="match_parent"
-	       	android:layout_height="wrap_content"
-	        android:padding="10dp"
-	        android:layout_margin="4dp"
-	       	android:text="Sign In"
-	       	android:background="@drawable/button_default_bg"
-	       />
-        </LinearLayout>
+        android:orientation="vertical"
+        android:padding="10dp">
+
+
+        <EditText
+            android:id="@+id/sign_in_et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_top_bg"
+            android:drawableLeft="@drawable/email"
+            android:hint="Email"
+            android:padding="10dp"
+            android:textColorHint="#cccccc" />
+
+        <EditText
+            android:id="@+id/sign_in_et_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-2dp"
+            android:background="@drawable/edittext_bottom_bg"
+            android:drawableLeft="@drawable/password"
+            android:hint="Password"
+            android:padding="10dp"
+            android:password="true"
+            android:textColorHint="#cccccc" />
+
+        <Button
+            android:id="@+id/btnSignInSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/button_default_bg"
+            android:padding="10dp"
+            android:text="Sign In" />
+    </LinearLayout>
 
 </RelativeLayout>

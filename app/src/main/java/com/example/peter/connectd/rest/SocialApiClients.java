@@ -1,4 +1,4 @@
-package com.example.peter.connectd;
+package com.example.peter.connectd.rest;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.peter.connectd.R;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -56,7 +57,15 @@ import twitter4j.conf.ConfigurationBuilder;
  * Created by peter on 22/05/15.
  */
 public class SocialApiClients {
-//    FACEBOOK_APP_SECRET=4ee26bcb519450184d31917305b63357
+    private static final String FACEBOOK_APP_SECRET = "4ee26bcb519450184d31917305b63357";
+    private static final String TWITTER_CONSUMER_KEY = "lGJcPrnQCrMfLvhYlSRQCnEef";
+    private static final String TWITTER_CONSUMER_SECRET = "dYKcPlUibwIW2EI0Bn51LotigUKdWpZofbcBIdYWzUshsjHRCg";
+    private static final String GOOGLE_CLIENT_ID = "303584122338-26s78h7upkk6jmb3g9alsvfr5635hfh2.apps.googleusercontent.com";
+    private static final String GOOGLE_CLIENT_SECRET = "K4nyOYBhBuEiLJFUx1ITMer9";
+    private final static String LINKEDIN_CONSUMER_KEY = "77ew7bvhr0i9jf";
+    private final static String LINKEDIN_CONSUMER_SECRET = "I5cH7FWjwqYGzno9";
+    private final static String LINKEDIN_SCOPE_PARAMS = "w_messages";
+
 
     private static Twitter sTwitter;
     private static Instagram sInstagram;
@@ -70,8 +79,8 @@ public class SocialApiClients {
     public static Twitter getTwitter(Activity activity) {
         if (sTwitter == null) {
             ConfigurationBuilder builder = new ConfigurationBuilder();
-            builder.setOAuthConsumerKey("lGJcPrnQCrMfLvhYlSRQCnEef");
-            builder.setOAuthConsumerSecret("dYKcPlUibwIW2EI0Bn51LotigUKdWpZofbcBIdYWzUshsjHRCg");
+            builder.setOAuthConsumerKey(TWITTER_CONSUMER_KEY);
+            builder.setOAuthConsumerSecret(TWITTER_CONSUMER_SECRET);
             Configuration configuration = builder.build();
             TwitterFactory factory = new TwitterFactory(configuration);
             sTwitter = factory.getInstance();
@@ -128,7 +137,7 @@ public class SocialApiClients {
         return sInstagram;
     }
 
-    public static PlusDomains getGPlus(Context context) {
+    public static PlusDomains getGPlus(final Context context) {
         if (sPlusDomains == null) {
             HttpTransport httpTransport = new NetHttpTransport();
             JsonFactory jsonFactory = new JacksonFactory();
@@ -141,8 +150,8 @@ public class SocialApiClients {
             GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
                     new NetHttpTransport(),
                     new JacksonFactory(),
-                    "303584122338-26s78h7upkk6jmb3g9alsvfr5635hfh2.apps.googleusercontent.com", // This comes from your Developers Console project
-                    "K4nyOYBhBuEiLJFUx1ITMer9", // This, as well
+                    GOOGLE_CLIENT_ID, // This comes from your Developers Console project
+                    GOOGLE_CLIENT_SECRET, // This, as well
                     scopes)
                     .setApprovalPrompt("force")
                     .setAccessType("offline").build();
@@ -164,25 +173,22 @@ public class SocialApiClients {
                 GoogleCredential credential = new GoogleCredential.Builder()
                         .setTransport(httpTransport)
                         .setJsonFactory(jsonFactory)
-                        .setClientSecrets("303584122338-26s78h7upkk6jmb3g9alsvfr5635hfh2.apps.googleusercontent.com", "K4nyOYBhBuEiLJFUx1ITMer9")
+                        .setClientSecrets(GOOGLE_CLIENT_ID,
+                                GOOGLE_CLIENT_SECRET)
                         .addRefreshListener(new CredentialRefreshListener() {
                             @Override
                             public void onTokenResponse(Credential credential, TokenResponse tokenResponse) {
-                                // Handle success.
-                                System.out.println("Credential was refreshed successfully.");
+                                Toast.makeText(context, "Credential was refreshed successfully.",
+                                        Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void onTokenErrorResponse(Credential credential,
                                                              TokenErrorResponse tokenErrorResponse) {
-                                // Handle error.
-                                System.err.println("Credential was not refreshed successfully. "
-                                        + "Redirect to error page or login screen.");
+                                Toast.makeText(context, "Credential was not refreshed successfully.",
+                                        Toast.LENGTH_SHORT).show();
                             }
                         })
-                                // You can also add a credential store listener to have credentials
-                                // stored automatically.
-                                //.addRefreshListener(new CredentialStoreRefreshListener(userId, credentialStore))
                         .build();
                 credential.setFromTokenResponse(tokenResponse);
                 sPlusDomains = new PlusDomains
@@ -199,10 +205,11 @@ public class SocialApiClients {
 
             EditText pinEditText = (EditText) ((Activity) context).findViewById(R.id.pin_edit_text);
 
-            final String consumerKeyValue = "77ew7bvhr0i9jf";
-            final String consumerSecretValue = "I5cH7FWjwqYGzno9";
-            final String scopeParams = "w_messages";
-            final LinkedInOAuthService oauthService = LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(consumerKeyValue, consumerSecretValue, scopeParams);
+
+            final String consumerKeyValue = LINKEDIN_CONSUMER_KEY;
+
+            final String consumerSecretValue = LINKEDIN_CONSUMER_SECRET;
+            final LinkedInOAuthService oauthService = LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(consumerKeyValue, consumerSecretValue, LINKEDIN_SCOPE_PARAMS);
 
             Toast.makeText(context, "Fetching request token from LinkedIn...", Toast.LENGTH_SHORT).show();
 

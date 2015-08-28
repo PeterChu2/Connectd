@@ -1,4 +1,6 @@
-package com.example.peter.connectd;
+package com.example.peter.connectd.models;
+
+import com.example.peter.connectd.rest.SocialApiClients;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,6 +9,15 @@ import java.util.Set;
  * Model object for a user - contains all Authentication data
  */
 public class User {
+    public static final String USERNAME_KEY = "username";
+    public static final String EMAIL_KEY = "email";
+    public static final String FIRST_NAME_KEY = "first_name";
+    public static final String LAST_NAME_KEY = "last_name";
+    public static final String PASSWORD_KEY = "password";
+    public static final String PASSWORD_CONFIRMATION_KEY = "password_confirmation";
+    public static final String LOGIN_KEY = "login";
+    public static final String REMEMBER_ME_KEY = "remember_me";
+    public static final String USER_KEY = "user";
 
     private int mId;
     private String mName;
@@ -34,10 +45,6 @@ public class User {
         mGPlusId = gPlusId;
         mLinkedInId = linkedInId;
         mAuthorizations = authorizations;
-    }
-
-    public static User findById(int id) {
-        return null;
     }
 
     public static class Builder {
@@ -121,8 +128,7 @@ public class User {
     }
 
     public int getId() {
-        return 12345;
-//        return mId;
+        return mId;
     }
 
     public String getName() {

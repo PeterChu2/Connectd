@@ -1,4 +1,4 @@
-package com.example.peter.connectd;
+package com.example.peter.connectd.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,11 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.widget.TextView;
 
+import com.example.peter.connectd.R;
+import com.example.peter.connectd.models.User;
+import com.example.peter.connectd.rest.ConnectdApiClient;
+import com.example.peter.connectd.rest.ConnectdApiService;
+import com.example.peter.connectd.rest.SocialApiClients;
 import com.google.api.services.plusDomains.PlusDomains;
 import com.google.api.services.plusDomains.model.Circle;
 import com.google.api.services.plusDomains.model.CircleFeed;
@@ -22,7 +27,6 @@ import org.jinstagram.model.Relationship;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import twitter4j.Twitter;
@@ -43,7 +47,7 @@ public class InvitationAcceptedActivity extends Activity {
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         Intent intent = getIntent();
         if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(intent.getAction())) {
@@ -52,12 +56,19 @@ public class InvitationAcceptedActivity extends Activity {
 
             NdefMessage message = (NdefMessage) rawMessages[0]; // only one message transferred
 
-            int friendId = Integer.valueOf(new String(message.getRecords()[0].getPayload()));
-            User friend = User.findById(friendId);
-            if(friend != null) {
+            String friendLogin = new String(message.getRecords()[0].getPayload());
+            ConnectdApiService connectdApiService = ConnectdApiClient.getApiService();
+            User friend = null;
+            if (friendLogin.contains("@")) {
+                friend = connectdApiService.findUserByEmail(friendLogin);
+            } else if (!friendLogin.isEmpty()) {
+                friend = connectdApiService.findUserByUsername(friendLogin);
+            }
+            if (friend != null) {
                 sendInvitation(friend);
             }
-            mTextView.setText(String.format("Received User data from friend with user ID: %d", friendId));
+            mTextView.setText(String
+                    .format("Received User data from friend with user login: %s", friendLogin));
         }
     }
 
@@ -83,10 +94,9 @@ public class InvitationAcceptedActivity extends Activity {
                         listCircles.setMaxResults(1L);
                         CircleFeed circleFeed = listCircles.execute();
                         List<Circle> circles = circleFeed.getItems();
-                        Iterator<Circle> itr = circles.iterator();
-                        while(itr.hasNext()) {
-                            Circle circle = itr.next();
-                            PlusDomains.Circles.AddPeople addPeople = plusDomainsClient.circles().addPeople(circle.getId());
+                        for (Circle circle : circles) {
+                            PlusDomains.Circles.AddPeople addPeople = plusDomainsClient.circles()
+                                    .addPeople(circle.getId());
                             addPeople.setUserId(addUserIds);
                             addPeople.execute();
                         }
@@ -107,8 +117,8 @@ public class InvitationAcceptedActivity extends Activity {
                     LinkedInApiClient linkedInApiClient = SocialApiClients.getLinkedIn(this);
                     Person person = linkedInApiClient.getProfileForCurrentUser();
                     String authHeader = "";
-                    for(HttpHeader header : person.getApiStandardProfileRequest().getHeaders().getHttpHeaderList()) {
-                        if(ApplicationConstants.AUTH_HEADER_NAME.equals(header.getName())) {
+                    for (HttpHeader header : person.getApiStandardProfileRequest().getHeaders().getHttpHeaderList()) {
+                        if (ApplicationConstants.AUTH_HEADER_NAME.equals(header.getName())) {
                             authHeader = header.getName();
                         }
                     }

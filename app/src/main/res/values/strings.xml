@@ -5,4 +5,7 @@
     <string name="pin">Verification Pin:</string>
     <string name="verify">Verify</string>
     <string name="settings">Settings</string>
+    <string name="app_logo">app logo</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
 </resources>
