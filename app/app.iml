@@ -73,6 +73,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dex-cache" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.beardedhen/androidbootstrap/1.2.3/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.1.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jacoco" />
@@ -93,19 +94,20 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="jsr305-1.3.9" level="project" />
     <orderEntry type="library" exported="" name="google-http-client-1.20.0" level="project" />
+    <orderEntry type="library" exported="" name="androidbootstrap-1.2.3" level="project" />
     <orderEntry type="library" exported="" name="linkedin-j-android" level="project" />
     <orderEntry type="library" exported="" name="1_linkedin-j-android" level="project" />
     <orderEntry type="library" exported="" name="google-api-client-1.20.0" level="project" />
     <orderEntry type="library" exported="" name="jackson-core-2.1.3" level="project" />
     <orderEntry type="library" exported="" name="twitter4j-core-4.0.1" level="project" />
-    <orderEntry type="library" exported="" name="gson-2.2.2" level="project" />
     <orderEntry type="library" exported="" name="jInstagram-1.0.3" level="project" />
+    <orderEntry type="library" exported="" name="gson-2.2.2" level="project" />
     <orderEntry type="library" exported="" name="bolts-android-1.2.0" level="project" />
     <orderEntry type="library" exported="" name="google-http-client-jackson2-1.20.0" level="project" />
     <orderEntry type="library" exported="" name="android-async-http-1.4.8" level="project" />
     <orderEntry type="library" exported="" name="support-v4-23.0.0" level="project" />
-    <orderEntry type="library" exported="" name="httpcore-4.3.2" level="project" />
     <orderEntry type="library" exported="" name="google-api-services-plusDomains-v1-rev121-1.20.0" level="project" />
+    <orderEntry type="library" exported="" name="httpcore-4.3.2" level="project" />
     <orderEntry type="library" exported="" name="guava-jdk5-13.0" level="project" />
     <orderEntry type="library" exported="" name="facebook-android-sdk-4.1.0" level="project" />
     <orderEntry type="library" exported="" name="google-oauth-client-1.20.0" level="project" />

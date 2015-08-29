@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Connectd</string>
+    <string name="email_hint">Email</string>
+    <string name="username_hint">Username</string>
+    <string name="login_hint">Username/Email</string>
     <string name="instructions">To get started, enable NFC and hold your phone up back-to-back against your friend\'s phone</string>
     <string name="facebook_app_id">1572924836313003</string>
     <string name="pin">Verification Pin:</string>
@@ -8,4 +11,18 @@
     <string name="app_logo">app logo</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Sign In</string>
+    <string name="username">Username</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">Email</string>
+    <string name="instagram">Instagram</string>
+    <string name="twitter">Twitter</string>
+    <string name="facebook">Facebook</string>
+    <string name="g_plus">Google Plus</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="reset_pwd">Reset Password</string>
+    <string name="invite_user">Get Connectd!</string>
+    <string name="basic_info">Basic Info</string>
+    <string name="social_media">Social Media</string>
+
 </resources>

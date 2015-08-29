@@ -12,6 +12,7 @@ import com.example.peter.connectd.R;
 import com.example.peter.connectd.models.User;
 import com.example.peter.connectd.rest.ConnectdApiClient;
 import com.example.peter.connectd.rest.ConnectdApiService;
+import com.example.peter.connectd.rest.OnAsyncHttpRequestCompleteListener;
 import com.example.peter.connectd.rest.SocialApiClients;
 import com.google.api.services.plusDomains.PlusDomains;
 import com.google.api.services.plusDomains.model.Circle;
@@ -35,7 +36,7 @@ import twitter4j.TwitterException;
 /**
  * Class to accept NFC message from sender
  */
-public class InvitationAcceptedActivity extends Activity {
+public class InvitationAcceptedActivity extends Activity implements OnAsyncHttpRequestCompleteListener {
 
     private TextView mTextView;
 
@@ -55,20 +56,12 @@ public class InvitationAcceptedActivity extends Activity {
                     NfcAdapter.EXTRA_NDEF_MESSAGES);
 
             NdefMessage message = (NdefMessage) rawMessages[0]; // only one message transferred
-
             String friendLogin = new String(message.getRecords()[0].getPayload());
-            ConnectdApiService connectdApiService = ConnectdApiClient.getApiService();
-            User friend = null;
-            if (friendLogin.contains("@")) {
-                friend = connectdApiService.findUserByEmail(friendLogin);
-            } else if (!friendLogin.isEmpty()) {
-                friend = connectdApiService.findUserByLogin(friendLogin);
-            }
-            if (friend != null) {
-                sendInvitation(friend);
-            }
             mTextView.setText(String
                     .format("Received User data from friend with user login: %s", friendLogin));
+
+            ConnectdApiService connectdApiService = ConnectdApiClient.getApiService();
+            connectdApiService.findUserByLogin(this, friendLogin, this);
         }
     }
 
@@ -129,5 +122,17 @@ public class InvitationAcceptedActivity extends Activity {
             }
         }
 
+    }
+
+    @Override
+    public void onUserLoaded(User user) {
+        if (user != null) {
+            sendInvitation(user);
+        }
+    }
+
+    @Override
+    public void onUsersLoaded(List<User> users) {
+        // NOP
     }
 }

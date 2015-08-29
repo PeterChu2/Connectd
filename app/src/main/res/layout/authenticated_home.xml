@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <com.beardedhen.androidbootstrap.BootstrapCircleThumbnail
+        android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:padding="5dp"
+        bootstrap:bct_image="@drawable/icon_user_default" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -22,19 +32,22 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/pin"
-            android:layout_alignParentLeft="true"/>
+            android:layout_alignParentLeft="true"
+            android:visibility="invisible"/>
         <EditText
             android:id="@+id/pin_edit_text"
             android:layout_width="140dp"
             android:layout_gravity="end"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/pin_text_view" />
+            android:layout_toRightOf="@+id/pin_text_view"
+            android:visibility="invisible" />
         <Button
             android:id="@+id/verification_button"
             android:text="@string/verify"
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:visibility="invisible"/>
     </RelativeLayout>
 
     <TextView
@@ -45,7 +58,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/instructions"
         android:id="@+id/instructions_text_view"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"/>
 
 
 </LinearLayout>

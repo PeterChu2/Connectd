@@ -1,25 +1,25 @@
 package com.example.peter.connectd.ui;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.example.peter.connectd.R;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-    Button btnSignIn;
-    Button btnSignUp;
+    BootstrapButton btnSignIn;
+    BootstrapButton btnSignUp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnSignIn = (Button) findViewById(R.id.btnSignIn);
-        btnSignUp = (Button) findViewById(R.id.btnSignUp);
+        btnSignIn = (BootstrapButton) findViewById(R.id.btnSignIn);
+        btnSignUp = (BootstrapButton) findViewById(R.id.btnSignUp);
 
         btnSignIn.setOnClickListener(this);
         btnSignUp.setOnClickListener(this);
@@ -37,7 +37,4 @@ public class MainActivity extends Activity implements OnClickListener {
         }
         startActivity(i);
     }
-
-
-
 }

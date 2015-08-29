@@ -2,20 +2,23 @@ package com.example.peter.connectd.rest;
 
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
 
 import com.example.peter.connectd.models.User;
 import com.example.peter.connectd.ui.AuthenticatedHomeActivity;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 
 import org.apache.http.Header;
 import org.apache.http.entity.StringEntity;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,40 +35,30 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
     @Override
     public void findUserByLogin(final Context context, String login,
                                 final OnAsyncHttpRequestCompleteListener listener) {
-        JSONObject params = new JSONObject();
-        try {
-            params.put("search_query", login);
-        } catch (JSONException e) {
-            // NOP
-        }
 
-        try {
-            StringEntity entity = new StringEntity(params.toString());
-            mAsyncHttpClient.addHeader("Accept", "application/json");
-            mAsyncHttpClient.get(context, ConnectdApiClient.CONNECTD_ENDPOINT + "/" + ConnectdApiClient.RELATIVE_SEARCH_ENDPOINT,
-                    entity, "application/x-www-form-urlencoded", new JsonHttpResponseHandler() {
-                        @Override
-                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                            super.onSuccess(statusCode, headers, response);
-                            if (statusCode == 200) {
-                                try {
-                                    User.Builder userBuilder = new User.Builder(response.getInt(User.ID_KEY))
-                                            .setEmail(response.getString(User.EMAIL_KEY))
-                                            .setFirstName(response.getString(User.FIRST_NAME_KEY))
-                                            .setLastName(response.getString(User.LAST_NAME_KEY));
-                                    if (response.getString(User.USERNAME_KEY) != null) {
-                                        userBuilder.setUsername(response.getString(User.USERNAME_KEY));
-                                    }
-                                    listener.onUserLoaded(userBuilder.build());
-                                } catch (JSONException e) {
-                                    // NOP
-                                }
+        final RequestParams params = new RequestParams();
+        params.put("search_query", login);
+        mAsyncHttpClient.addHeader("Accept", "application/json");
+        mAsyncHttpClient.addHeader("Content-Type", "application/x-www-form-urlencoded");
+        mAsyncHttpClient.get(String.format("%s/%s", ConnectdApiClient.CONNECTD_ENDPOINT,
+                        ConnectdApiClient.RELATIVE_SEARCH_ENDPOINT),
+                params, new JsonHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        super.onSuccess(statusCode, headers, response);
+                        if (statusCode == 200) {
+                            try {
+                                User.Builder userBuilder = new User.Builder(response.getInt(User.ID_KEY))
+                                        .setEmail(response.getString(User.EMAIL_KEY))
+                                        .setFirstName(response.getString(User.FIRST_NAME_KEY))
+                                        .setLastName(response.getString(User.LAST_NAME_KEY));
+                                listener.onUserLoaded(userBuilder.build());
+                            } catch (JSONException e) {
+                                // NOP
                             }
                         }
-                    });
-        } catch (UnsupportedEncodingException e) {
-            // NOP
-        }
+                    }
+                });
     }
 
     @Override
@@ -81,18 +74,23 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
         mAsyncHttpClient.get(context, ConnectdApiClient.CONNECTD_ENDPOINT + "/" + ConnectdApiClient.RELATIVE_SEARCH_ENDPOINT,
                 entity, "application/x-www-form-urlencoded", new JsonHttpResponseHandler() {
                     @Override
-                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                         super.onSuccess(statusCode, headers, response);
                         if (statusCode == 200) {
                             try {
-                                User.Builder userBuilder = new User.Builder(response.getInt(User.ID_KEY))
-                                        .setEmail(response.getString(User.EMAIL_KEY))
-                                        .setFirstName(response.getString(User.FIRST_NAME_KEY))
-                                        .setLastName(response.getString(User.LAST_NAME_KEY));
-                                if (response.getString(User.USERNAME_KEY) != null) {
-                                    userBuilder.setUsername(response.getString(User.USERNAME_KEY));
+                                List<User> userList = new ArrayList<User>();
+                                for (int i = 0; i < response.length(); i++) {
+                                    JSONObject userObject = response.getJSONObject(i);
+                                    User.Builder userBuilder = new User.Builder(userObject.getInt(User.ID_KEY))
+                                            .setEmail(userObject.getString(User.EMAIL_KEY))
+                                            .setFirstName(userObject.getString(User.FIRST_NAME_KEY))
+                                            .setLastName(userObject.getString(User.LAST_NAME_KEY));
+                                    if (userObject.getString(User.USERNAME_KEY) != null) {
+                                        userBuilder.setUsername(userObject.getString(User.USERNAME_KEY));
+                                    }
+                                    userList.add(userBuilder.build());
                                 }
-                                listener.onUserLoaded(userBuilder.build());
+                                listener.onUsersLoaded(userList);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -102,7 +100,8 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
     }
 
     @Override
-    public void signIn(final Context context, String login, String password) {
+    public void signIn(final Context context, final String login, String password,
+                       final OnAuthenticateListener authenticateListener) {
         JSONObject params = new JSONObject();
         JSONObject userParams = new JSONObject();
         try {
@@ -116,11 +115,11 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
         TextHttpResponseHandler httpResponseHandler = new TextHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                if (statusCode == 200 || statusCode == 302) {
-                    context.startActivity(new Intent(context, AuthenticatedHomeActivity.class));
-                } else if (statusCode == 401) {
-                    Toast.makeText(context, "Invalid username or password. Check your credentials.",
-                            Toast.LENGTH_SHORT).show();
+                if ((statusCode == 302) || (responseString.contains("Signed in successfully"))) {
+                    // redirect in rails app logic -> authenticated
+                    authenticateListener.onAuthenticate(login);
+                } else  {
+                    authenticateListener.onAuthenticateFailed();
                 }
             }
 

@@ -54,7 +54,7 @@ import twitter4j.conf.ConfigurationBuilder;
 
 
 /**
- * Created by peter on 22/05/15.
+ * Class to manage all the different social media platforms.
  */
 public class SocialApiClients {
     private static final String FACEBOOK_APP_SECRET = "4ee26bcb519450184d31917305b63357";

@@ -21,7 +21,9 @@ public class User {
     public static final String ID_KEY = "id";
 
     private int mId;
-    private String mName;
+    private String mFirstName;
+    private String mEmail;
+    private String mLastname;
     private String mTwitterUsername;
     private String mFacebookUsername;
     private String mInstagramId;
@@ -29,9 +31,13 @@ public class User {
     private String mLinkedInId;
     private Set<Authorization> mAuthorizations;
     private static User sCurrentUser;
+    private String mUsername;
 
     private User(int id,
-                 String name,
+                 String username,
+                 String firstName,
+                 String lastName,
+                 String email,
                  String twitterUsername,
                  String facebookUsername,
                  String instagramId,
@@ -39,7 +45,10 @@ public class User {
                  String linkedInId,
                  Set<Authorization> authorizations) {
         mId = id;
-        mName = name;
+        mUsername = username;
+        mFirstName = firstName;
+        mLastname = lastName;
+        mEmail = email;
         mTwitterUsername = twitterUsername;
         mFacebookUsername = facebookUsername;
         mInstagramId = instagramId;
@@ -117,7 +126,8 @@ public class User {
         }
 
         public User build() {
-            return new User(mId, mFirstName, mTwitterUsername, mFacebookUsername, mInstagramId,
+            return new User(mId, mUsername, mFirstName, mLastName, mEmail,
+                    mTwitterUsername, mFacebookUsername, mInstagramId,
                     mGPlusId, mLinkedInId, mAuthorizations);
         }
     }
@@ -132,6 +142,7 @@ public class User {
 
     /**
      * Returns the user that is logged in. Will return null if not logged in.
+     *
      * @return the current user
      */
     public static User getCurrentUser() {
@@ -140,6 +151,7 @@ public class User {
 
     /**
      * Returns whether the user is logged in.
+     *
      * @return the logged in state of the user.
      */
     public static boolean isLoggedIn() {
@@ -149,46 +161,62 @@ public class User {
     public int getId() {
         return mId;
     }
-    public String getName() {
-        return mName;
+
+    public String getFirstName() {
+        return mFirstName;
     }
+
+    public String getLastName() { return mLastname; }
+
+    public String getEmail() { return mEmail; }
+
     public String getTwitterUsername() {
         return mTwitterUsername;
     }
+
     public String getFacebookUsername() {
         return mFacebookUsername;
     }
+
     public String getInstagramId() {
         return mInstagramId;
     }
+
     public String getgPlusId() {
         return mGPlusId;
     }
+
     public String getLinkedInId() {
         return mLinkedInId;
     }
+
     public Set<Authorization> getAuthorizations() {
         return mAuthorizations;
+    }
+
+    public String getUsername() {
+        return mUsername;
     }
 
 
     public void setLinkedInId(String linkedInId) {
         mLinkedInId = linkedInId;
     }
+
     public void setGPlusId(String gPlusId) {
         mGPlusId = gPlusId;
     }
+
     public void setInstagramId(String instagramId) {
         mInstagramId = instagramId;
     }
+
     public void setFacebookUsername(String facebookUsername) {
         mFacebookUsername = facebookUsername;
     }
+
     public void setTwitterUsername(String twitterUsername) {
         mTwitterUsername = twitterUsername;
-    }
-    public void setName(String name) {
-        mName = name;
     }
 
     /**

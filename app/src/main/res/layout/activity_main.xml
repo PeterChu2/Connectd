@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -18,22 +19,26 @@
         android:contentDescription="@string/app_logo"
         android:src="@drawable/connectd" />
 
-    <Button
+    <com.beardedhen.androidbootstrap.BootstrapButton
         android:id="@+id/btnSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:background="@drawable/button_default_bg"
-        android:padding="10dp"
-        android:text="@string/sign_up" />
+        android:padding="5dp"
+        android:text="@string/sign_up"
+        bootstrap:bb_type="primary"
+        bootstrap:bb_icon_left="fa-sign-in"
+        bootstrap:bb_roundedCorners="true" />
 
-    <Button
+    <com.beardedhen.androidbootstrap.BootstrapButton
         android:id="@+id/btnSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:background="@drawable/button_default_bg"
-        android:padding="10dp"
-        android:text="@string/sign_in" />
+        android:padding="5dp"
+        android:text="@string/sign_in"
+        bootstrap:bb_type="primary"
+        bootstrap:bb_icon_left="fa-user"
+        bootstrap:bb_roundedCorners="true" />
 </LinearLayout>
 

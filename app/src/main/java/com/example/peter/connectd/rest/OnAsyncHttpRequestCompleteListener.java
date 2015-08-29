@@ -18,5 +18,5 @@ public interface OnAsyncHttpRequestCompleteListener {
      * Invoked when a list of {@link User}s has been fetched from the database.
      * @param users a {@link java.util.List<User>} fetched from the database.
      */
-    public void onUserLoaded(List<User> users);
+    public void onUsersLoaded(List<User> users);
 }

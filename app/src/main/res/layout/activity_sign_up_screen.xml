@@ -1,90 +1,91 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" 
-    
-    android:background="#ffffff">
+    tools:context=".MainActivity">
 
-    <LinearLayout 
-        android:orientation="vertical"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="10dp"
-        >
+        android:orientation="vertical"
+        android:padding="10dp">
 
-		<EditText
-			android:id="@+id/sign_up_et_first_name"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@drawable/edittext_top_bg"
-			android:padding="10dp"
-			android:hint="First Name"
-			android:textColorHint="#bbbbbb" />
-		<EditText
-			android:id="@+id/sign_up_et_last_name"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@drawable/edittext_top_bg"
-			android:padding="10dp"
-			android:hint="Last Name"
-			android:textColorHint="#bbbbbb" />
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/app_logo"
+            android:src="@drawable/connectd" />
 
-    	<EditText 
-    	    	android:id="@+id/sign_up_et_email"
-	       	android:layout_width="match_parent"
-	       	android:layout_height="wrap_content"
-	      	android:background="@drawable/edittext_top_bg"
-	        android:padding="10dp"
-	        android:hint="Email"
-	        android:textColorHint="#bbbbbb"
-	        android:drawableLeft="@drawable/email"/>
-    	<EditText 
-    	    	android:id="@+id/sign_up_et_username"
-	       	android:layout_width="match_parent"
-	       	android:layout_height="wrap_content"
-	       	android:background="@drawable/edittext_default_bg"
-	       	android:layout_marginTop="-2dp"
-	        android:padding="10dp"
-	        android:hint="User Name"
-	        android:textColorHint="#bbbbbb"
-	        android:drawableLeft="@drawable/user"/>
-    	<EditText 
-    	    	android:id="@+id/sign_up_et_password"
-	       	android:layout_width="match_parent"
-	       	android:layout_height="wrap_content"
-	       	android:background="@drawable/edittext_bottom_bg"
-	       	android:layout_marginTop="-2dp"
-	        android:padding="10dp"
-	        android:hint="Password"
-	        android:textColorHint="#bbbbbb"
-	        android:password="true"
-	        android:drawableLeft="@drawable/password"/>
-		<EditText
-			android:id="@+id/sign_up_et_password_confirmation"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@drawable/edittext_bottom_bg"
-			android:layout_marginTop="-2dp"
-			android:padding="10dp"
-			android:hint="Password Confirmation"
-			android:textColorHint="#bbbbbb"
-			android:password="true"
-			android:drawableLeft="@drawable/password"/>
-        <Button 
-	       	android:id="@+id/btnSignUpSubmit"
-	       	android:layout_width="match_parent"
-	       	android:layout_height="wrap_content"
-	        android:padding="10dp"
-	        android:layout_margin="4dp"
-	       	android:text="Sign Up"
-	       	android:background="@drawable/button_default_bg"
-	       />
-        </LinearLayout>
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/sign_up_et_first_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="First Name"
+            android:padding="10dp"
+            android:textColorHint="#bbbbbb" />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/sign_up_et_last_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Last Name"
+            android:padding="10dp"
+            android:textColorHint="#bbbbbb" />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/sign_up_et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:padding="10dp"
+            android:textColorHint="#bbbbbb" />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/sign_up_et_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-2dp"
+            android:hint="@string/username_hint"
+            android:padding="10dp"
+            android:textColorHint="#bbbbbb" />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/sign_up_et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-2dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textColorHint="#bbbbbb" />
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:id="@+id/sign_up_et_password_confirmation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-2dp"
+            android:hint="Password Confirmation"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textColorHint="#bbbbbb" />
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/btnSignUpSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:padding="10dp"
+            android:text="Sign In"
+            bootstrap:bb_roundedCorners="true"
+            bootstrap:bb_type="success" />
+    </LinearLayout>
 
 </RelativeLayout>

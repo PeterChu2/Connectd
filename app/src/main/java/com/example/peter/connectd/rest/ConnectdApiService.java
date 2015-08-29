@@ -13,7 +13,7 @@ import java.util.Map;
 public interface ConnectdApiService {
     /**
      * Asynchronously finds the unique user from a username or email address.
-     * The {@link User} is returned via. {@link OnAsyncHttpRequestCompleteListener#onUserLoaded(User)}
+     * The {@link User} is returned via. {@link OnAsyncHttpRequestCompleteListener#onUsersLoaded(User)}
      *
      * @param context  The application context.
      * @param login    The unique username of the user to return.
@@ -25,7 +25,7 @@ public interface ConnectdApiService {
 
     /**
      * Asynchronously queries the database for all {@link User}s matching the provided criteria.
-     * The {@link List<User>} os retirmed via {@link OnAsyncHttpRequestCompleteListener#onUsersLoaded(List<User>)};
+     * The {@link List<User>} os returned via {@link OnAsyncHttpRequestCompleteListener#onUsersLoaded(List<User>)};
      *
      * @param searchParams A map of search parameters.
      * @return A {@link List} of {@link User}s that match the query.
@@ -39,8 +39,10 @@ public interface ConnectdApiService {
      * @param context  The {@link android.app.Activity} context.
      * @param login    The username or the email of the account.
      * @param password The password of the account.
+     * @param onAuthenticateListener A listener to be notified when the user has successfully logged in.
      */
-    void signIn(final Context context, String login, String password);
+    void signIn(final Context context, String login, String password,
+                final OnAuthenticateListener onAuthenticateListener);
 
     /**
      * Signs up for a new account within the app.
