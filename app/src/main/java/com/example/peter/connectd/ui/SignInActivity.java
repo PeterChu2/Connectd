@@ -50,7 +50,7 @@ public class SignInActivity extends Activity implements OnAuthenticateListener {
     public void onAuthenticate(String login) {
         mProgressDialog.dismiss();
         SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(this).edit();
-        sharedPreferencesEditor.putString(ConnectdApiClient.SHAREDPREF_LOGIN_KEY, login).commit();
+        sharedPreferencesEditor.putString(ConnectdApiClient.SHAREDPREF_LOGIN_KEY, login.toLowerCase()).commit();
         startActivity(new Intent(this, AuthenticatedHomeActivity.class));
     }
 

@@ -57,6 +57,14 @@ public class User {
         mAuthorizations = authorizations;
     }
 
+    public static boolean isUsernameValid(String username) {
+        return username != null && username.length() < 20;
+    }
+
+    public static boolean isEmailValid(String email) {
+        return email != null && email.contains("@");
+    }
+
     public static class Builder {
         private int mId;
         private String mEmail;

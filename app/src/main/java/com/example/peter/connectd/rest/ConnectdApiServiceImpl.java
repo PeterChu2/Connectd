@@ -49,6 +49,7 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
                         if (statusCode == 200) {
                             try {
                                 User.Builder userBuilder = new User.Builder(response.getInt(User.ID_KEY))
+                                        .setUsername(response.getString(User.USERNAME_KEY))
                                         .setEmail(response.getString(User.EMAIL_KEY))
                                         .setFirstName(response.getString(User.FIRST_NAME_KEY))
                                         .setLastName(response.getString(User.LAST_NAME_KEY));

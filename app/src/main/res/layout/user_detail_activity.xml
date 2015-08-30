@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
-    xmlns:fontawesometext="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,13 +11,16 @@
 
         <com.beardedhen.androidbootstrap.BootstrapThumbnail
             android:id="@+id/user_detail_photo"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            bootstrap:bt_width="100dp"
+            bootstrap:bt_height="100dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_margin="6dp"
-            android:padding="1px" />
+            android:padding="1px"
+            bootstrap:bt_image="@drawable/icon_user_default"/>
 
         <TextView
             android:id="@+id/detail_name"
@@ -43,29 +45,41 @@
             android:layout_margin="5dp">
 
             <TableRow
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="#cccccc"
                 android:padding="3dp">
 
                 <TextView
                     android:id="@+id/user_basic_info"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_weight="1"
+                    android:gravity="start"
                     android:text="@string/basic_info" />
 
                 <com.beardedhen.androidbootstrap.FontAwesomeText
                     android:id="@+id/edit_basic_info"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    fontawesometext:fa_icon="fa-pencil-square-o" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:visibility="gone"
+                    bootstrap:fa_icon="fa-edit" />
             </TableRow>
 
-            <TableRow android:layout_marginTop="5dp">
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="start"
                     android:paddingEnd="5dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
@@ -73,17 +87,26 @@
 
                 <com.beardedhen.androidbootstrap.BootstrapEditText
                     android:id="@+id/user_detail_username"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:enabled="false" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:gravity="end"
+                    android:inputType="text"
+                    android:maxLength="20" />
             </TableRow>
 
-            <TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="start"
                     android:paddingEnd="5dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
@@ -91,50 +114,70 @@
 
                 <com.beardedhen.androidbootstrap.BootstrapEditText
                     android:id="@+id/user_detail_email"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:autoLink="email"
-                    android:enabled="false" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:gravity="end"
+                    android:inputType="textEmailAddress" />
             </TableRow>
 
-            <TableRow android:layout_marginTop="10dp">
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="start"
                     android:paddingEnd="5dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
+                    android:layout_weight="1"
                     android:text="@string/first_name" />
 
                 <com.beardedhen.androidbootstrap.BootstrapEditText
                     android:id="@+id/user_detail_first_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:enabled="false" />
+                    android:layout_gravity="center_vertical"
+                    android:enabled="false"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:inputType="text"
+                    android:maxLength="20" />
             </TableRow>
 
-            <TableRow android:layout_marginTop="10dp">
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="start"
                     android:paddingEnd="5dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
+                    android:layout_weight="1"
                     android:text="@string/last_name" />
 
                 <com.beardedhen.androidbootstrap.BootstrapEditText
                     android:id="@+id/user_detail_last_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:enabled="false"
+                    android:gravity="end"
                     android:paddingEnd="5dp"
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp" />
+                    android:layout_weight="1"
+                    android:paddingRight="5dp"
+                    android:inputType="text"
+                    android:maxLength="20" />
             </TableRow>
 
         </TableLayout>
@@ -147,20 +190,25 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/detail_header_section">
 
-        <TextView
-            android:id="@+id/social_media_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#cccccc"
-            android:padding="3dp"
-            android:text="@string/social_media" />
 
         <TableLayout
             android:id="@+id/contact_table"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/social_media_header"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp">
+
+            <TableRow android:background="#cccccc">
+
+                <TextView
+                    android:id="@+id/social_media_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="@string/social_media" />
+            </TableRow>
+        </TableLayout>
 
     </RelativeLayout>
 
@@ -169,16 +217,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/detail_user_section">
 
-        <TextView
-            android:id="@+id/detail_action_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="3dp" />
-
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/detail_action_header"
             android:stretchColumns="0,1">
 
             <TableRow android:layout_marginTop="5dp">
@@ -188,10 +229,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:padding="12dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
                     android:text="@string/invite_user"
                     bootstrap:bb_roundedCorners="true"
-                    bootstrap:bb_type="success" />
+                    bootstrap:bb_type="success"
+                    android:visibility="gone"/>
             </TableRow>
 
             <TableRow>
@@ -201,10 +244,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:padding="12dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
                     android:text="@string/reset_pwd"
                     bootstrap:bb_roundedCorners="true"
-                    bootstrap:bb_type="warning" />
+                    bootstrap:bb_type="warning"
+                    android:visibility="gone" />
             </TableRow>
 
 
