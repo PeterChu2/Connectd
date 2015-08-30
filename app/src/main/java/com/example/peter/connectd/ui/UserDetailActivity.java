@@ -106,9 +106,9 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
 
     private void updateUI() {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String login = sharedPrefs.getString(ConnectdApiClient.SHAREDPREF_LOGIN_KEY, "");
-        if (login.equals(mCurrentUser.getEmail().toLowerCase()) ||
-                login.equals(mCurrentUser.getUsername().toLowerCase())) {
+        String currentUserUsername = sharedPrefs.getString(ConnectdApiClient.SHAREDPREF_CURRENT_USER_KEY, "");
+        if (currentUserUsername.equals(mCurrentUser.getEmail().toLowerCase()) ||
+                currentUserUsername.equals(mCurrentUser.getUsername().toLowerCase())) {
             // viewing own detail page - show edit button, and reset password button
             FontAwesomeText faEdit = (FontAwesomeText) findViewById(R.id.edit_basic_info);
             faEdit.setVisibility(View.VISIBLE);

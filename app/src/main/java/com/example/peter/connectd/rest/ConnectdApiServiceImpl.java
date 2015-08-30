@@ -63,27 +63,42 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
     }
 
     @Override
-    public void findUser(final Context context, Map<String, String> searchParams,
-                         final OnAsyncHttpRequestCompleteListener listener) {
+    public void findUsers(final Context context, Map<String, String> searchParams,
+                          final OnAsyncHttpRequestCompleteListener listener) {
+        // TODO - make endpoint that allows for searching with all params and implement this function
+    }
+
+    @Override
+    public void findUsers(Context context, String query, final OnAsyncHttpRequestCompleteListener listener) {
         StringEntity entity = null;
+        JSONObject searchParams = new JSONObject();
+        JSONObject queryParams = new JSONObject();
         try {
-            entity = new StringEntity(new JSONObject(searchParams).toString());
+            queryParams.put(User.QUERY_KEY, query);
+            searchParams.put(User.SEARCH_KEY, queryParams);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            entity = new StringEntity(searchParams.toString());
         } catch (UnsupportedEncodingException e) {
             // NOP
         }
+        mAsyncHttpClient.addHeader("Content-Type", "application/json");
         mAsyncHttpClient.addHeader("Accept", "application/json");
-        mAsyncHttpClient.get(context, ConnectdApiClient.CONNECTD_ENDPOINT + "/" + ConnectdApiClient.RELATIVE_SEARCH_ENDPOINT,
-                entity, "application/x-www-form-urlencoded", new JsonHttpResponseHandler() {
+        mAsyncHttpClient.get(context, String.format("%s/%s", ConnectdApiClient.CONNECTD_ENDPOINT,
+                ConnectdApiClient.RELATIVE_AUTOCOMPLETE_ENDPOINT),
+                entity, "application/json", new JsonHttpResponseHandler() {
                     @Override
-                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         super.onSuccess(statusCode, headers, response);
                         if (statusCode == 200) {
                             try {
                                 List<User> userList = new ArrayList<User>();
-                                for (int i = 0; i < response.length(); i++) {
-                                    JSONObject userObject = response.getJSONObject(i);
+                                JSONArray userResults = response.getJSONArray(User.USERS_RESULTS_KEY);
+                                for (int i = 0; i < userResults.length(); i++) {
+                                    JSONObject userObject = userResults.getJSONObject(i);
                                     User.Builder userBuilder = new User.Builder(userObject.getInt(User.ID_KEY))
-                                            .setEmail(userObject.getString(User.EMAIL_KEY))
                                             .setFirstName(userObject.getString(User.FIRST_NAME_KEY))
                                             .setLastName(userObject.getString(User.LAST_NAME_KEY));
                                     if (userObject.getString(User.USERNAME_KEY) != null) {

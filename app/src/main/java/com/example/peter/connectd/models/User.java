@@ -19,6 +19,9 @@ public class User {
     public static final String REMEMBER_ME_KEY = "remember_me";
     public static final String USER_KEY = "user";
     public static final String ID_KEY = "id";
+    public static final String SEARCH_KEY = "search";
+    public static final String QUERY_KEY = "query";
+    public static final String USERS_RESULTS_KEY = "users_results";
 
     private int mId;
     private String mFirstName;
@@ -63,6 +66,16 @@ public class User {
 
     public static boolean isEmailValid(String email) {
         return email != null && email.contains("@");
+    }
+
+    public String getLogin() {
+        if(mUsername != null) {
+            return mUsername;
+        }
+        if(mEmail != null) {
+            return mEmail;
+        }
+        else return getFullName();
     }
 
     public static class Builder {
@@ -175,6 +188,8 @@ public class User {
     }
 
     public String getLastName() { return mLastname; }
+
+    public String getFullName() { return String.format("%s %s", mFirstName, mLastname); }
 
     public String getEmail() { return mEmail; }
 

@@ -30,8 +30,18 @@ public interface ConnectdApiService {
      * @param searchParams A map of search parameters.
      * @return A {@link List} of {@link User}s that match the query.
      */
-    void findUser(final Context context, Map<String, String> searchParams,
-                  final OnAsyncHttpRequestCompleteListener listener);
+    void findUsers(final Context context, Map<String, String> searchParams,
+                   final OnAsyncHttpRequestCompleteListener listener);
+
+    /**
+     * Asynchronously queries the database for all {@link User}s matching the provided criteria.
+     * The {@link List<User>} os returned via {@link OnAsyncHttpRequestCompleteListener#onUsersLoaded(List<User>)};
+     *
+     * @param query A fuzzy search query.
+     * @return A {@link List} of {@link User}s that match the query.
+     */
+    void findUsers(final Context context, String query,
+                   final OnAsyncHttpRequestCompleteListener listener);
 
     /**
      * Authenticates within the app.
