@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'maven'
 
 android {
     compileSdkVersion 23
@@ -23,6 +24,12 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+    }
+}
+
 dependencies {
     compile 'com.beardedhen:androidbootstrap:+'
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -37,4 +44,5 @@ dependencies {
     compile 'com.loopj.android:android-async-http:1.4.8'
     compile 'org.apache.httpcomponents:httpcore:4.3.2'
     compile files('/home/peter/StudioProjects/Connectd/libs/linkedin-j-android.jar')
+    compile 'com.quinny898.library.persistentsearch:library:1.0.0-SNAPSHOT'
 }
