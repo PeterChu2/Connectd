@@ -2,6 +2,9 @@ package com.example.peter.connectd.models;
 
 import com.example.peter.connectd.rest.SocialApiClients;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -94,6 +97,18 @@ public class User {
         public Builder(int id) {
             mAuthorizations = new HashSet<Authorization>();
             mId = id;
+        }
+
+        public Builder(JSONObject user) throws JSONException {
+            mId = user.getInt(ID_KEY);
+            if(user.has(FIRST_NAME_KEY))
+                mFirstName = user.getString(FIRST_NAME_KEY);
+            if(user.has(LAST_NAME_KEY))
+                mLastName = user.getString(LAST_NAME_KEY);
+            if(user.has(USERNAME_KEY))
+                mUsername = user.getString(USERNAME_KEY);
+            if(user.has(EMAIL_KEY))
+                mEmail = user.getString(EMAIL_KEY);
         }
 
         public Builder setFirstName(String name) {

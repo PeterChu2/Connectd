@@ -51,6 +51,11 @@ public class AuthenticatedHomeActivity extends Activity implements NfcAdapter.Cr
         mThumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences sharedPrefs = PreferenceManager
+                        .getDefaultSharedPreferences(AuthenticatedHomeActivity.this);
+                SharedPreferences.Editor sharedPrefEditor = sharedPrefs.edit();
+                sharedPrefEditor.putString(ConnectdApiClient.SHAREDPREF_LOGIN_KEY, sharedPrefs
+                        .getString(ConnectdApiClient.SHAREDPREF_CURRENT_USER_KEY, null)).commit();
                 Intent i = new Intent(AuthenticatedHomeActivity.this, UserDetailActivity.class);
                 startActivity(i);
             }

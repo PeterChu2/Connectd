@@ -106,14 +106,18 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
 
     private void updateUI() {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String currentUserUsername = sharedPrefs.getString(ConnectdApiClient.SHAREDPREF_CURRENT_USER_KEY, "");
-        if (currentUserUsername.equals(mCurrentUser.getEmail().toLowerCase()) ||
-                currentUserUsername.equals(mCurrentUser.getUsername().toLowerCase())) {
+        String currentUserLogin = sharedPrefs.getString(ConnectdApiClient.SHAREDPREF_CURRENT_USER_KEY, "");
+        if (currentUserLogin.equals(mCurrentUser.getEmail().toLowerCase()) ||
+                currentUserLogin.equals(mCurrentUser.getUsername().toLowerCase())) {
             // viewing own detail page - show edit button, and reset password button
             FontAwesomeText faEdit = (FontAwesomeText) findViewById(R.id.edit_basic_info);
             faEdit.setVisibility(View.VISIBLE);
             BootstrapButton resetPwdButton = (BootstrapButton) findViewById(R.id.detail_reset_pwd);
             resetPwdButton.setVisibility(View.VISIBLE);
+        } else {
+            // show button to get Connectd
+            BootstrapButton getConnectdButton = (BootstrapButton) findViewById(R.id.get_connectd_button);
+            getConnectdButton.setVisibility(View.VISIBLE);
         }
 
         // TODO - if user has a profile picture, set the thumbnail

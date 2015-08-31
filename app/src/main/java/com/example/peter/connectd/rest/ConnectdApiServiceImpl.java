@@ -48,12 +48,7 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
                         super.onSuccess(statusCode, headers, response);
                         if (statusCode == 200) {
                             try {
-                                User.Builder userBuilder = new User.Builder(response.getInt(User.ID_KEY))
-                                        .setUsername(response.getString(User.USERNAME_KEY))
-                                        .setEmail(response.getString(User.EMAIL_KEY))
-                                        .setFirstName(response.getString(User.FIRST_NAME_KEY))
-                                        .setLastName(response.getString(User.LAST_NAME_KEY));
-                                listener.onUserLoaded(userBuilder.build());
+                                listener.onUserLoaded(new User.Builder(response).build());
                             } catch (JSONException e) {
                                 // NOP
                             }
@@ -77,7 +72,7 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
             queryParams.put(User.QUERY_KEY, query);
             searchParams.put(User.SEARCH_KEY, queryParams);
         } catch (JSONException e) {
-            e.printStackTrace();
+            // NOP
         }
         try {
             entity = new StringEntity(searchParams.toString());
@@ -98,17 +93,11 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
                                 JSONArray userResults = response.getJSONArray(User.USERS_RESULTS_KEY);
                                 for (int i = 0; i < userResults.length(); i++) {
                                     JSONObject userObject = userResults.getJSONObject(i);
-                                    User.Builder userBuilder = new User.Builder(userObject.getInt(User.ID_KEY))
-                                            .setFirstName(userObject.getString(User.FIRST_NAME_KEY))
-                                            .setLastName(userObject.getString(User.LAST_NAME_KEY));
-                                    if (userObject.getString(User.USERNAME_KEY) != null) {
-                                        userBuilder.setUsername(userObject.getString(User.USERNAME_KEY));
-                                    }
-                                    userList.add(userBuilder.build());
+                                    userList.add(new User.Builder(userObject).build());
                                 }
                                 listener.onUsersLoaded(userList);
                             } catch (JSONException e) {
-                                e.printStackTrace();
+                                // NOP
                             }
                         }
                     }
