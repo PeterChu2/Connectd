@@ -6,6 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
@@ -36,39 +37,92 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UserDetailActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/UserDetailActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="109" column="65" selection-start-line="109" selection-start-column="65" selection-end-line="109" selection-end-column="65" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AuthenticatedHomeActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/AuthenticatedHomeActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="73" column="17" selection-start-line="73" selection-start-column="16" selection-end-line="73" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SignInActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/SignInActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.006237">
-              <caret line="33" column="16" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+            <state vertical-scroll-proportion="1.5462428">
+              <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1305#1447#0" expanded="true" />
-                <element signature="e#1446#1447#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="57" column="32" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConnectdApiClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SearchResult.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/models/SearchResult.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding>
+                <element signature="e#202#203#0" expanded="true" />
+                <element signature="e#238#239#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuthenticationService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/login/AuthenticationService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AccountAuthenticator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/login/AccountAuthenticator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/models/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="101" column="18" selection-start-line="101" selection-start-column="18" selection-end-line="101" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConnectdApiServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="124" column="0" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -79,9 +133,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="resourceFile" />
         <option value="layoutResourceFile_vertical" />
         <option value="Interface" />
+        <option value="resourceFile" />
         <option value="Class" />
       </list>
     </option>
@@ -1472,15 +1526,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/SocialApiClients.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/InvitationAcceptActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ed.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_nfc_display.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/InvitationAcceptedActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/xml/pref_data_sync.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/xml/pref_headers.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/SettingsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings_activity_settings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/xml/pref_general.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/main.xml" />
@@ -1506,23 +1551,32 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_in_screen.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/SignUpActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/rest/OnAuthenticateListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/user_detail_activity.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/authenticated_home.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/SignInActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiClient.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/com/quinny898/library/persistentsearch/ConnectdSearchAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/quinny898/library/persistentsearch/ConnectdSearchBox.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/models/ConnectdSearchResult.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/models/SearchResult.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiServiceImpl.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/UserDetailActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/AuthenticatedHomeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/models/User.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/AuthenticatedHomeActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/authenticator/AuthenticationService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/authenticator/Authenticator.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/SyncAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/SyncService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/SignInActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiClient.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/signin/KinveyAccountAuthenticator.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/common/accounts/GenericAccountService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/xml/authenticator.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/common/accounts/AuthenticationService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/login/AccountAuthenticator.java" />
       </list>
     </option>
   </component>
@@ -1537,10 +1591,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1985" />
-    <option name="y" value="-4" />
-    <option name="width" value="1375" />
-    <option name="height" value="904" />
+    <option name="x" value="65" />
+    <option name="y" value="24" />
+    <option name="width" value="1855" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -1565,7 +1619,9 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1681,34 +1737,8 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Connectd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Connectd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
+              <option name="myItemId" value="xml" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1735,40 +1765,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Connectd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Connectd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1799,6 +1795,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="connectd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1887,6 +1887,40 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="connectd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="login" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Connectd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Connectd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -1946,15 +1980,13 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="preferences.intentionPowerPack" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="SearchEverywhereHistoryKey" value="signin&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/SignInActivity.java&#10;auth&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/AuthenticatedHomeActivity.java&#10;userdeta&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/UserDetailActivity.java&#10;acti&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/AuthenticatedHomeActivity.java&#10;impl&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiServiceImpl.java&#10;authen&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/AuthenticatedHomeActivity.java&#10;searchbo&#9;FILE&#9;jar:///home/peter/StudioProjects/Connectd/app/build/intermediates/exploded-aar/com.quinny898.library.persistentsearch/library/1.0.0-SNAPSHOT/jars/classes.jar!/com/quinny898/library/persistentsearch/SearchBox.class&#10;search_box&#9;PSI&#9;JAVA://com.example.peter.connectd.R.id#search_box&#10;connectd&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/models/ConnectdSearchResult.java&#10;authe&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/AuthenticatedHomeActivity.java&#10;aut&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/AuthenticatedHomeActivity.java&#10;androidman&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/AndroidManifest.xml&#10;build&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/build.gradle&#10;bui&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/build.gradle&#10;userde&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/UserDetailActivity.java&#10;signinac&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/SignInActivity.java&#10;deta&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/user_detail_activity.xml&#10;user_de&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/user_detail_activity.xml&#10;user_detail&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/user_detail_activity.xml&#10;user&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/models/User.java&#10;sign&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/activity_sign_in_screen.xml&#10;authenticated&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/AuthenticatedHomeActivity.java&#10;androidm&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/AndroidManifest.xml&#10;sign_&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/activity_sign_up_screen.xml&#10;signup&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/SignUpActivity.java&#10;main&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/activity_main.xml&#10;screen&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/activity_sign_in_screen.xml&#10;string&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/values/strings.xml&#10;signups&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/activity_sign_up_screen.xml&#10;signupa&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/SignUpActivity.java&#10;sign up&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/activity_sign_up_screen.xml&#10;strings&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/values/strings.xml&#10;build.g&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/build.gradle&#10;settings.gra&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/settings.gradle&#10;buil&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/build.gradle&#10;build.&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/build.gradle&#10;activity_&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/activity_sign_in_screen.xml&#10;sign in&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/SignInActivity.java&#10;serv&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiService.java&#10;activity_sign&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/activity_sign_up_screen.xml&#10;activit&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/activity_sign_in_screen.xml&#10;mainac&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/MainActivity.java&#10;activity_m&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/activity_main.xml&#10;androidma&#9;FILE&#9;file:///home/peter/Android/Connectd/app/src/main/AndroidManifest.xml&#10;acc&#9;FILE&#9;file:///home/peter/Android/Connectd/app/src/main/java/com/example/peter/connectd/InvitationAcceptedActivity.java&#10;androi&#9;FILE&#9;file:///home/peter/Android/Connectd/app/src/main/AndroidManifest.xml&#10;activity&#9;FILE&#9;file:///home/peter/Android/Connectd/app/src/main/java/com/example/peter/connectd/InvitationAcceptedActivity.java&#10;maina&#9;FILE&#9;file:///home/peter/Android/Connectd/app/src/main/java/com/example/peter/connectd/MainActivity.java&#10;pref&#9;FILE&#9;file:///home/peter/Android/Connectd/app/src/main/res/xml/pref_general.xml&#10;build.gra&#9;FILE&#9;file:///home/peter/Android/Connectd/app/build.gradle" />
+    <property name="SearchEverywhereHistoryKey" value="signin&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/SignInActivity.java&#10;authen&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/xml/authenticator.xml&#10;auth&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/xml/authenticator.xml&#10;client&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiClient.java&#10;authentica&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/xml/authenticator.xml&#10;connectda&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiClient.java&#10;authenticator&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/xml/authenticator.xml&#10;androidm&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/AndroidManifest.xml&#10;activit&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/SignInActivity.java&#10;andr&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/AndroidManifest.xml&#10;connec&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiClient.java&#10;manifest&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/AndroidManifest.xml&#10;xml&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/xml/authenticator.xml&#10;manifes&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/AndroidManifest.xml&#10;gener&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/android/common/accounts/GenericAccountService.java&#10;apicli&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiClient.java&#10;AM&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/AndroidManifest.xml&#10;androidmanif&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/AndroidManifest.xml&#10;userdeta&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/UserDetailActivity.java&#10;acti&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/AuthenticatedHomeActivity.java&#10;impl&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiServiceImpl.java&#10;searchbo&#9;FILE&#9;jar:///home/peter/StudioProjects/Connectd/app/build/intermediates/exploded-aar/com.quinny898.library.persistentsearch/library/1.0.0-SNAPSHOT/jars/classes.jar!/com/quinny898/library/persistentsearch/SearchBox.class&#10;search_box&#9;PSI&#9;JAVA://com.example.peter.connectd.R.id#search_box&#10;connectd&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/models/ConnectdSearchResult.java&#10;authe&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/AuthenticatedHomeActivity.java&#10;aut&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/AuthenticatedHomeActivity.java&#10;androidman&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/AndroidManifest.xml&#10;build&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/build.gradle&#10;bui&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/build.gradle&#10;userde&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/UserDetailActivity.java&#10;signinac&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/SignInActivity.java&#10;deta&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/user_detail_activity.xml&#10;user_de&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/user_detail_activity.xml&#10;user_detail&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/user_detail_activity.xml&#10;user&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/models/User.java&#10;sign&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/activity_sign_in_screen.xml&#10;authenticated&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/AuthenticatedHomeActivity.java&#10;sign_&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/activity_sign_up_screen.xml&#10;signup&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/SignUpActivity.java&#10;main&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/activity_main.xml&#10;screen&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/activity_sign_in_screen.xml&#10;string&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/values/strings.xml&#10;signups&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/activity_sign_up_screen.xml&#10;signupa&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/java/com/example/peter/connectd/ui/SignUpActivity.java&#10;sign up&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/layout/activity_sign_up_screen.xml&#10;strings&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/src/main/res/values/strings.xml&#10;build.g&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/app/build.gradle&#10;settings.gra&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/settings.gradle&#10;buil&#9;FILE&#9;file:///home/peter/StudioProjects/Connectd/build.gradle" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="5d10d971" />
@@ -2188,34 +2220,34 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1985" y="-4" width="1375" height="904" extended-state="6" />
+    <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34318766" sideWeight="0.53724605" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39974293" sideWeight="0.49736643" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33547556" sideWeight="0.55379987" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34318766" sideWeight="0.46275395" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24634655" sideWeight="0.2692095" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33419022" sideWeight="0.39202407" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46401027" sideWeight="0.7547028" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24634655" sideWeight="0.7307905" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29571107" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277635" sideWeight="0.44168547" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2172471" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277635" sideWeight="0.4356659" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34237996" sideWeight="0.5317855" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -2246,59 +2278,13 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-23/java/util/concurrent/ConcurrentHashMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3319838">
-          <caret line="845" column="12" selection-start-line="845" selection-start-column="12" selection-end-line="845" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.twitter4j/twitter4j-core/4.0.1/f1ba5ef4a200e94857bc49d41385a364f1b5571e/twitter4j-core-4.0.1-sources.jar!/twitter4j/Twitter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32793522">
-          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-23/java/lang/Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.659919">
-          <caret line="353" column="18" selection-start-line="353" selection-start-column="18" selection-end-line="353" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.8/ec314dce534e83c93364388d023625bb8e605e38/android-async-http-1.4.8-sources.jar!/com/loopj/android/http/RequestParams.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3319838">
-          <caret line="425" column="18" selection-start-line="425" selection-start-column="18" selection-end-line="425" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.8/ec314dce534e83c93364388d023625bb8e605e38/android-async-http-1.4.8-sources.jar!/com/loopj/android/http/JsonHttpResponseHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.5668017">
-          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.8/ec314dce534e83c93364388d023625bb8e605e38/android-async-http-1.4.8-sources.jar!/com/loopj/android/http/TextHttpResponseHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="45" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <caret line="124" column="0" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2313,6 +2299,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="57" column="95" selection-start-line="57" selection-start-column="95" selection-end-line="57" selection-end-column="95" />
+          <folding>
+            <element signature="e#3278#3286#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2350,29 +2339,32 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.290322">
           <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="42" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up_screen.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up_screen.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.3225806">
           <caret line="59" column="9" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="58" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/SignUpActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="27" column="73" selection-start-line="27" selection-start-column="73" selection-end-line="27" selection-end-column="73" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2380,13 +2372,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -2415,17 +2400,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="367" column="7" selection-start-line="367" selection-start-column="7" selection-end-line="367" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sign_in_screen.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="43" column="12" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="44" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Android/Sdk/sources/android-23/android/view/animation/Animation.java">
@@ -2458,23 +2444,23 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/user_detail_activity.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/authenticated_home.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/authenticated_home.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3318584">
           <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
@@ -2498,25 +2484,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7176471">
-          <caret line="56" column="17" selection-start-line="56" selection-start-column="10" selection-end-line="56" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="52" selection-start-line="9" selection-start-column="52" selection-end-line="9" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Android/Sdk/sources/android-23/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="333" column="29" selection-start-line="333" selection-start-column="29" selection-end-line="333" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2531,10 +2502,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33268103">
           <caret line="77" column="20" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
-          <folding>
-            <element signature="e#2427#2428#0" expanded="false" />
-            <element signature="e#2476#2477#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2542,6 +2509,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3603352">
           <caret line="2162" column="32" selection-start-line="2162" selection-start-column="32" selection-end-line="2162" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2550,7 +2518,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="109" column="65" selection-start-line="109" selection-start-column="65" selection-end-line="109" selection-end-column="65" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2559,17 +2527,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33146068">
           <caret line="548" column="27" selection-start-line="548" selection-start-column="18" selection-end-line="548" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6340509">
-          <caret line="112" column="50" selection-start-line="112" selection-start-column="50" selection-end-line="112" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2577,15 +2534,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="596" column="37" selection-start-line="596" selection-start-column="37" selection-end-line="596" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/models/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="101" column="18" selection-start-line="101" selection-start-column="18" selection-end-line="101" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2593,7 +2541,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="977" column="16" selection-start-line="977" selection-start-column="16" selection-end-line="977" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2601,20 +2548,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/models/SearchResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21135029">
-          <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
-          <folding>
-            <element signature="e#202#203#0" expanded="true" />
-            <element signature="e#238#239#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2626,24 +2559,144 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/AuthenticatedHomeActivity.java">
+    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-23/android/accounts/Account.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="73" column="17" selection-start-line="73" selection-start-column="16" selection-end-line="73" selection-end-column="17" />
+          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/AuthenticatedHomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3548387">
+          <caret line="48" column="54" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-23/android/accounts/AbstractAccountAuthenticator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="431" column="34" selection-start-line="431" selection-start-column="34" selection-end-line="431" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-23/android/accounts/AccountManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="616" column="0" selection-start-line="616" selection-start-column="0" selection-end-line="616" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="124" column="0" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/SignInActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/models/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.006237">
-          <caret line="33" column="16" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="101" column="18" selection-start-line="101" selection-start-column="18" selection-end-line="101" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/models/SearchResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="e#202#203#0" expanded="true" />
+            <element signature="e#238#239#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6763006">
+          <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+          <folding>
+            <element signature="e#887#905#0" expanded="true" />
+            <element signature="e#1419#1444#0" expanded="true" />
+            <element signature="e#1537#1555#0" expanded="true" />
+            <element signature="e#1872#1890#0" expanded="true" />
+            <element signature="e#1993#2011#0" expanded="true" />
+            <element signature="e#2114#2132#0" expanded="true" />
+            <element signature="e#2246#2264#0" expanded="true" />
+            <element signature="e#2474#2492#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/authenticator.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.02601156">
+          <caret line="1" column="44" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/rest/ConnectdApiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="32" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/login/AuthenticationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1305#1447#0" expanded="true" />
-            <element signature="e#1446#1447#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/login/AccountAuthenticator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-23/android/accounts/AccountAuthenticatorActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33236995">
+          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+          <folding>
+            <element signature="e#2115#2116#0" expanded="true" />
+            <element signature="e#2153#2154#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/peter/connectd/ui/SignInActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.5462428">
+          <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

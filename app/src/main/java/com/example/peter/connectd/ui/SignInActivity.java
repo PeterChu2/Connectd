@@ -1,6 +1,8 @@
 package com.example.peter.connectd.ui;
 
-import android.app.Activity;
+import android.accounts.Account;
+import android.accounts.AccountAuthenticatorActivity;
+import android.accounts.AccountManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,10 +18,11 @@ import com.example.peter.connectd.rest.ConnectdApiClient;
 import com.example.peter.connectd.rest.ConnectdApiService;
 import com.example.peter.connectd.rest.OnAuthenticateListener;
 
-public class SignInActivity extends Activity implements OnAuthenticateListener {
+public class SignInActivity extends AccountAuthenticatorActivity implements OnAuthenticateListener {
     private BootstrapEditText mEtLogin;
     private BootstrapEditText mEtPassword;
     private ProgressDialog mProgressDialog;
+    private AccountManager mAccountManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class SignInActivity extends Activity implements OnAuthenticateListener {
             }
         });
         mProgressDialog = new ProgressDialog(this);
+        mAccountManager = AccountManager.get(this);
     }
 
     private void signIn() {
@@ -49,9 +53,21 @@ public class SignInActivity extends Activity implements OnAuthenticateListener {
     @Override
     public void onAuthenticate(String login) {
         mProgressDialog.dismiss();
-        SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(this).edit();
-        sharedPreferencesEditor.putString(ConnectdApiClient.SHAREDPREF_LOGIN_KEY, login.toLowerCase()).commit();
-        sharedPreferencesEditor.putString(ConnectdApiClient.SHAREDPREF_CURRENT_USER_KEY, login.toLowerCase()).apply();
+        SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager
+                .getDefaultSharedPreferences(this).edit();
+        sharedPreferencesEditor.putString(ConnectdApiClient.
+                SHAREDPREF_LOGIN_KEY, login.toLowerCase()).apply();
+        sharedPreferencesEditor.putString(ConnectdApiClient.
+                SHAREDPREF_CURRENT_USER_KEY, login.toLowerCase()).apply();
+        // save account details in account manager
+        final Account account = new Account(mEtLogin.getText().toString(),
+                ConnectdApiClient.CONNECTD_ACCOUNT_TYPE);
+        if(mAccountManager.addAccountExplicitly(account, mEtPassword.getText().toString(), null)) {
+            Bundle result = new Bundle();
+            result.putString(AccountManager.KEY_ACCOUNT_NAME, mEtLogin.getText().toString());
+            result.putString(AccountManager.KEY_ACCOUNT_TYPE,ConnectdApiClient.CONNECTD_ACCOUNT_TYPE);
+            setAccountAuthenticatorResult(result);
+        }
         startActivity(new Intent(this, AuthenticatedHomeActivity.class));
     }
 
