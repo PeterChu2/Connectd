@@ -1,4 +1,4 @@
-package com.example.peter.connectd.ui;
+package com.example.peter.connectd.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.os.Parcelable;
 import android.widget.TextView;
 
 import com.example.peter.connectd.R;
+import com.example.peter.connectd.models.SearchResult;
 import com.example.peter.connectd.models.User;
 import com.example.peter.connectd.rest.ConnectdApiClient;
 import com.example.peter.connectd.rest.ConnectdApiService;
@@ -132,7 +133,12 @@ public class InvitationAcceptedActivity extends Activity implements OnAsyncHttpR
     }
 
     @Override
-    public void onUsersLoaded(List<User> users) {
+    public void onResultsLoaded(List<SearchResult> results) {
+        // NOP
+    }
+
+    @Override
+    public void onUserLoadFailed(String error) {
         // NOP
     }
 }

@@ -37,7 +37,7 @@
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,16 +45,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.SettingsActivity"
+            android:name=".ui.activity.SettingsActivity"
             android:label="@string/app_name"></activity>
         <activity
-            android:name=".ui.SignInActivity"
+            android:name=".ui.activity.SignInActivity"
             android:label="@string/app_name"></activity>
         <activity
-            android:name=".ui.SignUpActivity"
+            android:name=".ui.activity.SignUpActivity"
             android:label="@string/app_name"></activity>
         <activity
-            android:name=".ui.AuthenticatedHomeActivity"
+            android:name=".ui.activity.AuthenticatedHomeActivity"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.activity.ResultsActivity"
             android:label="@string/app_name"></activity>
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -62,7 +65,7 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name=".ui.InvitationAcceptedActivity"
+            android:name=".ui.activity.InvitationAcceptedActivity"
             android:label="NFC Data Display">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
@@ -71,7 +74,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.UserDetailActivity"
+            android:name=".ui.activity.UserDetailActivity"
             android:label="User Detail Page"></activity>
 
 

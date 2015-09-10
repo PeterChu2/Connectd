@@ -2,5 +2,5 @@
     android:accountType="com.peter.connectd"
     android:icon="@drawable/connectd"
     android:smallIcon="@drawable/connectd"
-    android:label="@string/app_logo"
+    android:label="@string/app_name"
     />

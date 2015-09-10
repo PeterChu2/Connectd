@@ -10,7 +10,7 @@ public class ConnectdApiClient {
     public final static String SHAREDPREF_CURRENT_USER_KEY = "com.example.peter.connectd.current.user";
     public final static String RELATIVE_SEARCH_ENDPOINT = "user/search";
     public final static String RELATIVE_AUTOCOMPLETE_ENDPOINT = "users/autocomplete";
-    public final static String CONNECTD_AUTH_TOKEN_TYPE = "com.example.peter.connectd";
+    public final static String RELATIVE_USERS_ENDPOINT= "users";
 
     public static ConnectdApiService getApiService() {
         return new ConnectdApiServiceImpl();

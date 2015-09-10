@@ -1,4 +1,4 @@
-package com.example.peter.connectd.ui;
+package com.example.peter.connectd.ui.activity;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;

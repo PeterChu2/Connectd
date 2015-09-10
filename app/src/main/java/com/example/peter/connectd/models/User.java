@@ -7,6 +7,8 @@ import org.json.JSONObject;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Model object for a user - contains all Authentication data
@@ -68,7 +70,10 @@ public class User {
     }
 
     public static boolean isEmailValid(String email) {
-        return email != null && email.contains("@");
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 
     public String getLogin() {
@@ -79,6 +84,17 @@ public class User {
             return mEmail;
         }
         else return getFullName();
+    }
+
+    public String getProfilePicture() {
+        if(mAuthorizations != null) {
+            for (Authorization authorization : mAuthorizations) {
+                if (authorization.getProfilePicture() != null) {
+                    return authorization.getProfilePicture();
+                }
+            }
+        }
+        return null;
     }
 
     public static class Builder {
@@ -128,31 +144,31 @@ public class User {
 
         public Builder setFacebookUsername(String facebookUsername) {
             mFacebookUsername = facebookUsername;
-            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.FACEBOOK, facebookUsername));
+            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.FACEBOOK, facebookUsername, null));
             return this;
         }
 
         public Builder setTwitterUsername(String twitterUsername) {
             mTwitterUsername = twitterUsername;
-            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.TWITTER, twitterUsername));
+            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.TWITTER, twitterUsername, null));
             return this;
         }
 
         public Builder setInstagramId(String instagramId) {
             mInstagramId = instagramId;
-            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.INSTAGRAM, instagramId));
+            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.INSTAGRAM, instagramId, null));
             return this;
         }
 
         public Builder setGPlusId(String gPlusId) {
             mGPlusId = gPlusId;
-            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.GPLUS, gPlusId));
+            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.GPLUS, gPlusId, null));
             return this;
         }
 
         public Builder setLinkedInId(String linkedInId) {
             mLinkedInId = linkedInId;
-            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.LINKEDIN, linkedInId));
+            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.LINKEDIN, linkedInId, null));
             return this;
         }
 
@@ -236,6 +252,10 @@ public class User {
         return mUsername;
     }
 
+    public void setFirstName(String firstName) { mFirstName = firstName; }
+    public void setLastName(String lastName) { mLastname = lastName; }
+    public void setEmail(String email) { mEmail = email; }
+    public void setUsername(String username) { mUsername = username; }
 
     public void setLinkedInId(String linkedInId) {
         mLinkedInId = linkedInId;
@@ -263,10 +283,12 @@ public class User {
     public static class Authorization {
         SocialApiClients.SocialMediaName mSocialMediaName;
         String mIdentifier;
+        String mPicture;
 
-        public Authorization(SocialApiClients.SocialMediaName socialMediaName, String identifier) {
+        public Authorization(SocialApiClients.SocialMediaName socialMediaName, String identifier, String picture) {
             mSocialMediaName = socialMediaName;
             mIdentifier = identifier;
+            mPicture = picture;
         }
 
         public SocialApiClients.SocialMediaName getSocialMediaName() {
@@ -275,6 +297,10 @@ public class User {
 
         public String getIdentifier() {
             return mIdentifier;
+        }
+
+        public String getProfilePicture() {
+            return mPicture;
         }
     }
 }

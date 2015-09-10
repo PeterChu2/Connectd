@@ -2,16 +2,16 @@
     <string name="pref_header_general">General</string>
 
     <string name="twitter_preference">Disable Twitter Connections</string>
-    <string name="twitter_preference_description">When enabled, connecting with a friend will not receive a Twitter follow request.</string>
+    <string name="twitter_preference_description">When enabled, connecting with a friend will not send them a Twitter follow request.</string>
 
     <string name="linked_in_preference">Disable LinkedIn Connections</string>
-    <string name="linked_in_preference_description">When enabled, connecting with a friend will not receive a LinkedIn connection request.</string>
+    <string name="linked_in_preference_description">When enabled, connecting with a friend will not send them a LinkedIn connection request.</string>
 
     <string name="gplus_preference">Disable Google Plus Connections</string>
     <string name="gplus_preference_description">When enabled, connecting with a friend will not add them to your circles</string>
 
     <string name="instagram_preference">Disable Instagram Connections</string>
-    <string name="instagram_preference_description">When enabled, connecting with a friend will not receive an Instagram follow request</string>
+    <string name="instagram_preference_description">When enabled, connecting with a friend will not send them an Instagram follow request</string>
 
     <string name = "username_preference_summary">Set a global username for other users to find you by.</string>
 

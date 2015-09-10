@@ -1,7 +1,10 @@
-package com.example.peter.connectd.ui;
+package com.example.peter.connectd.ui.activity;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -13,10 +16,17 @@ import com.beardedhen.androidbootstrap.BootstrapEditText;
 import com.beardedhen.androidbootstrap.BootstrapThumbnail;
 import com.beardedhen.androidbootstrap.FontAwesomeText;
 import com.example.peter.connectd.R;
+import com.example.peter.connectd.models.SearchResult;
 import com.example.peter.connectd.models.User;
 import com.example.peter.connectd.rest.ConnectdApiClient;
 import com.example.peter.connectd.rest.ConnectdApiService;
 import com.example.peter.connectd.rest.OnAsyncHttpRequestCompleteListener;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.BinaryHttpResponseHandler;
+
+import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -30,6 +40,7 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
     private BootstrapEditText mEtFirstName;
     private BootstrapEditText mEtLastName;
     private BootstrapEditText mEtEmail;
+    private FontAwesomeText mFaEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +56,10 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
         resetPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO
+                // TODO - reset password - setup SendGrid
             }
         });
-        final FontAwesomeText mFaEdit = (FontAwesomeText) findViewById(R.id.edit_basic_info);
+        mFaEdit = (FontAwesomeText) findViewById(R.id.edit_basic_info);
         mFaEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,27 +76,29 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
                 } else {
                     if (User.isUsernameValid(mEtUsername.getText().toString())
                             && User.isEmailValid(mEtEmail.getText().toString())) {
-                        mFaEdit.setActivated(false);
-                        mEtUsername.setEnabled(false);
-                        mEtUsername.setFocusable(false);
-                        mEtEmail.setEnabled(false);
-                        mEtEmail.setFocusable(false);
-                        mEtFirstName.setEnabled(false);
-                        mEtFirstName.setFocusable(false);
-                        mEtLastName.setEnabled(false);
-                        mEtLastName.setFocusable(false);
-                        Toast.makeText(UserDetailActivity.this, "SAVED!", Toast.LENGTH_SHORT).show();
+                        JSONObject updateParams = new JSONObject();
+                        JSONObject userParams = new JSONObject();
+                        try {
+                            userParams.put(User.USERNAME_KEY, mEtUsername.getText().toString());
+                            userParams.put(User.FIRST_NAME_KEY, mEtFirstName.getText().toString());
+                            userParams.put(User.LAST_NAME_KEY, mEtLastName.getText().toString());
+                            userParams.put(User.EMAIL_KEY, mEtEmail.getText().toString());
+                            updateParams.put(User.USER_KEY, userParams);
+                        } catch (JSONException e) {
+                            // NOP
+                        }
+                        mConnectedApiService.updateUser(UserDetailActivity.this, mCurrentUser.getId(), updateParams, UserDetailActivity.this);
                     } else {
                         if (!User.isUsernameValid(mEtUsername.getText().toString()) &&
                                 !User.isEmailValid(mEtEmail.getText().toString())) {
-                            Toast.makeText(UserDetailActivity.this, String
-                                    .format("Username and email is already in use!"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UserDetailActivity.this,
+                                    "Please enter a valid username and email!", Toast.LENGTH_SHORT).show();
                         } else if (!User.isUsernameValid(mEtUsername.getText().toString())) {
-                            Toast.makeText(UserDetailActivity.this, String
-                                    .format("Username is already in use!"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UserDetailActivity.this,
+                                    "Username must be less than 20 characters!", Toast.LENGTH_SHORT).show();
                         } else if (!User.isEmailValid(mEtEmail.getText().toString())) {
-                            Toast.makeText(UserDetailActivity.this, String
-                                    .format("Email is already in use!"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UserDetailActivity.this,
+                                    "Email is invalid!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -96,12 +109,29 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
     @Override
     public void onUserLoaded(User user) {
         mCurrentUser = user;
+        if(mFaEdit.isActivated()) {
+            mFaEdit.setActivated(false);
+            mEtUsername.setEnabled(false);
+            mEtUsername.setFocusable(false);
+            mEtEmail.setEnabled(false);
+            mEtEmail.setFocusable(false);
+            mEtFirstName.setEnabled(false);
+            mEtFirstName.setFocusable(false);
+            mEtLastName.setEnabled(false);
+            mEtLastName.setFocusable(false);
+            Toast.makeText(UserDetailActivity.this, "SAVED!", Toast.LENGTH_SHORT).show();
+        }
         updateUI();
     }
 
     @Override
-    public void onUsersLoaded(List<User> users) {
+    public void onResultsLoaded(List<SearchResult> searchResults) {
         // NOP
+    }
+
+    @Override
+    public void onUserLoadFailed(String error) {
+        Toast.makeText(this, error, Toast.LENGTH_LONG).show();
     }
 
     private void updateUI() {
@@ -120,9 +150,23 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
             getConnectdButton.setVisibility(View.VISIBLE);
         }
 
-        // TODO - if user has a profile picture, set the thumbnail
-        BootstrapThumbnail profilePicture = (BootstrapThumbnail) findViewById(R.id.user_detail_photo);
-
+        if(mCurrentUser.getProfilePicture() != null) {
+            AsyncHttpClient client = new AsyncHttpClient();
+            client.get(mCurrentUser.getProfilePicture(), null, new BinaryHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, byte[] binaryData) {
+                    BootstrapThumbnail profilePicture = (BootstrapThumbnail) findViewById(R.id.user_detail_photo);
+                    Bitmap picture = BitmapFactory.decodeByteArray(binaryData, 0, binaryData.length);
+                    profilePicture.setBackground(new BitmapDrawable(getResources(), picture));
+                    profilePicture.invalidate();
+                    profilePicture.requestLayout();
+                }
+                @Override
+                public void onFailure(int statusCode, Header[] headers, byte[] binaryData, Throwable error) {
+                    // NOP
+                }
+            });
+        }
 
         TextView mTvFullName = (TextView) findViewById(R.id.detail_name);
         mTvFullName.setText(String.format("%s %s",

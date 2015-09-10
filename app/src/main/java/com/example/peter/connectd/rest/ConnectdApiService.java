@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.example.peter.connectd.models.User;
 
+import org.json.JSONObject;
+
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +27,7 @@ public interface ConnectdApiService {
 
     /**
      * Asynchronously queries the database for all {@link User}s matching the provided criteria.
-     * The {@link List<User>} os returned via {@link OnAsyncHttpRequestCompleteListener#onUsersLoaded(List<User>)};
+     * The {@link List<User>} os returned via {@link OnAsyncHttpRequestCompleteListener#onResultsLoaded(List<User>)};
      *
      * @param searchParams A map of search parameters.
      * @return A {@link List} of {@link User}s that match the query.
@@ -35,9 +37,10 @@ public interface ConnectdApiService {
 
     /**
      * Asynchronously queries the database for all {@link User}s matching the provided criteria.
-     * The {@link List<User>} os returned via {@link OnAsyncHttpRequestCompleteListener#onUsersLoaded(List<User>)};
+     * The {@link List<User>} os returned via {@link OnAsyncHttpRequestCompleteListener#onResultsLoaded(List<User>)};
      *
      * @param query A fuzzy search query.
+     * @param listener The listener to be notified when the users are returned from the server.
      * @return A {@link List} of {@link User}s that match the query.
      */
     void findUsers(final Context context, String query,
@@ -67,4 +70,14 @@ public interface ConnectdApiService {
      */
     void signUp(final Context context, String username, String email, String firstName,
                 String lastName, String password, String passwordConfirmation);
+
+    /**
+     * Updates a user in the Rail's database.
+     * @param context the activity context.
+     * @param id the id of the user to be updated
+     * @param updateParams the parameters of the user to be updated
+     * @param listener The listener to be notified when the user is updated from the server.
+     */
+    void updateUser(final Context context, int id, JSONObject updateParams,
+                final OnAsyncHttpRequestCompleteListener listener);
 }

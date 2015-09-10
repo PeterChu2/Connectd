@@ -3,8 +3,9 @@ package com.example.peter.connectd.rest;
 import android.content.Context;
 import android.content.Intent;
 
+import com.example.peter.connectd.models.SearchResult;
 import com.example.peter.connectd.models.User;
-import com.example.peter.connectd.ui.AuthenticatedHomeActivity;
+import com.example.peter.connectd.ui.activity.AuthenticatedHomeActivity;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -89,13 +90,13 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
                         super.onSuccess(statusCode, headers, response);
                         if (statusCode == 200) {
                             try {
-                                List<User> userList = new ArrayList<User>();
+                                List<SearchResult> searchResultsList = new ArrayList<SearchResult>();
                                 JSONArray userResults = response.getJSONArray(User.USERS_RESULTS_KEY);
                                 for (int i = 0; i < userResults.length(); i++) {
                                     JSONObject userObject = userResults.getJSONObject(i);
-                                    userList.add(new User.Builder(userObject).build());
+                                    searchResultsList.add(new SearchResult(userObject));
                                 }
-                                listener.onUsersLoaded(userList);
+                                listener.onResultsLoaded(searchResultsList);
                             } catch (JSONException e) {
                                 // NOP
                             }
@@ -185,5 +186,40 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
         } catch (UnsupportedEncodingException e) {
             // NOP
         }
+    }
+
+    @Override
+    public void updateUser(final Context context, int id, JSONObject updateParams,
+                       final OnAsyncHttpRequestCompleteListener listener) {
+        mAsyncHttpClient.addHeader("Accept", "application/json");
+        mAsyncHttpClient.addHeader("Content-Type", "application/json");
+        StringEntity entity = null;
+        try {
+            entity = new StringEntity(updateParams.toString());
+        } catch (UnsupportedEncodingException e) {
+            // NOP
+        }
+        mAsyncHttpClient.put(context, String.format("%s/%s/%d", ConnectdApiClient.CONNECTD_ENDPOINT,
+                ConnectdApiClient.RELATIVE_USERS_ENDPOINT, id), entity, "application/json",
+                new JsonHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        super.onSuccess(statusCode, headers, response);
+                        if (statusCode == 200) {
+                            try {
+                                listener.onUserLoaded(new User.Builder(response).build());
+                            } catch (JSONException e) {
+                                // NOP
+                            }
+                        } else if(statusCode == 500) {
+                            listener.onUserLoadFailed("User was not successfully saved. Your edited email or username is already registered.");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        super.onFailure(statusCode, headers, throwable, errorResponse);
+                    }
+                });
     }
 }

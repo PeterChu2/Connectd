@@ -1,5 +1,6 @@
 package com.example.peter.connectd.rest;
 
+import com.example.peter.connectd.models.SearchResult;
 import com.example.peter.connectd.models.User;
 
 import java.util.List;
@@ -12,11 +13,16 @@ public interface OnAsyncHttpRequestCompleteListener {
      * Invoked when a {@link User} has been fetched from the database.
      * @param user a {@link User} fetched from the database.
      */
-    public void onUserLoaded(User user);
+    void onUserLoaded(User user);
 
     /**
      * Invoked when a list of {@link User}s has been fetched from the database.
-     * @param users a {@link java.util.List<User>} fetched from the database.
+     * @param results a list of {@link java.util.List<SearchResult>}s fetched from the database.
      */
-    public void onUsersLoaded(List<User> users);
+    void onResultsLoaded(List<SearchResult> results);
+
+    /**
+     * Invoked when the user failed to load due to some error
+     */
+    void onUserLoadFailed(String error);
 }

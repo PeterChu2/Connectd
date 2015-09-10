@@ -1,4 +1,4 @@
-package com.example.peter.connectd.ui;
+package com.example.peter.connectd.ui.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapCircleThumbnail;
 import com.example.peter.connectd.R;
+import com.example.peter.connectd.models.SearchResult;
 import com.example.peter.connectd.models.User;
 import com.example.peter.connectd.rest.ConnectdApiClient;
 import com.example.peter.connectd.rest.ConnectdApiService;
@@ -96,11 +97,19 @@ public class AuthenticatedHomeActivity extends Activity implements NfcAdapter.Cr
 
             @Override
             public void onSearch(String searchQuery) {
-                SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager
-                        .getDefaultSharedPreferences(AuthenticatedHomeActivity.this).edit();
-                sharedPreferencesEditor.putString(ConnectdApiClient.SHAREDPREF_LOGIN_KEY, searchQuery).commit();
-                // TODO - user must exist, if not - redirect to search results page
-                Intent i = new Intent(AuthenticatedHomeActivity.this, UserDetailActivity.class);
+
+
+                Intent i;
+//                if(mSearchBox.getNumberOfResults() != 0) {
+//                     TODO - user must exist, if not - redirect to search results page
+//                SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager
+//                        .getDefaultSharedPreferences(AuthenticatedHomeActivity.this).edit();
+//                sharedPreferencesEditor.putString(ConnectdApiClient.SHAREDPREF_LOGIN_KEY, searchQuery).commit();
+//                    i = new Intent(AuthenticatedHomeActivity.this, UserDetailActivity.class);
+//                } else {
+                    i = new Intent(AuthenticatedHomeActivity.this, ResultsActivity.class);
+                    i.putExtra(ResultsActivity.QUERY_STRING, searchQuery);
+//                }
                 startActivity(i);
             }
         });
@@ -157,20 +166,23 @@ public class AuthenticatedHomeActivity extends Activity implements NfcAdapter.Cr
     }
 
     @Override
-    public void onUsersLoaded(List<User> users) {
-        for (User user : users) {
+    public void onResultsLoaded(List<SearchResult> results) {
+        for (SearchResult result : results) {
             com.quinny898.library.persistentsearch.SearchResult option;
-            // TODO - need custom adapter for showing results - https://github.com/Quinny898/PersistentSearch/pull/58
-            if (user.getAuthorizations() == null) {
-                option = new com.quinny898.library.persistentsearch.SearchResult(user.getLogin(),
+            if (result.getPictureUrl() != null) {
+                option = new com.quinny898.library.persistentsearch.SearchResult(result.getUsername(),
                         ContextCompat.getDrawable(this, R.drawable.icon_user_default));
             } else {
-                // TODO - get user picture too if available
-                option = new com.quinny898.library.persistentsearch.SearchResult(user.getLogin(),
+                option = new com.quinny898.library.persistentsearch.SearchResult(result.getUsername(),
                         ContextCompat.getDrawable(this, R.drawable.icon_user_default));
             }
             mSearchBox.addSearchable(option);
         }
+    }
+
+    @Override
+    public void onUserLoadFailed(String error) {
+        // NOP
     }
 
     @Override

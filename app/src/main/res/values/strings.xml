@@ -24,5 +24,6 @@
     <string name="invite_user">Get Connectd!</string>
     <string name="basic_info">Basic Info</string>
     <string name="social_media">Social Media</string>
+    <string name="results_title">Search Results</string>
 
 </resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+    <com.beardedhen.androidbootstrap.BootstrapThumbnail
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        bootstrap:bt_width="50dp"
+        bootstrap:bt_height="50dp"
+        android:id="@+id/result_thumbnail"
+        bootstrap:bt_image="@drawable/icon_user_default" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/result_display_name"
+        android:paddingLeft="30dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="22dp" />
+
+</LinearLayout>
