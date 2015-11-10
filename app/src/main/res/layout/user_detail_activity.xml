@@ -11,16 +11,14 @@
 
         <com.beardedhen.androidbootstrap.BootstrapThumbnail
             android:id="@+id/user_detail_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            bootstrap:bt_width="100dp"
-            bootstrap:bt_height="100dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_margin="6dp"
             android:padding="1px"
-            bootstrap:bt_image="@drawable/icon_user_default"/>
+            android:src="@drawable/icon_user_default"/>
 
         <TextView
             android:id="@+id/detail_name"
@@ -59,7 +57,7 @@
                     android:gravity="start"
                     android:text="@string/basic_info" />
 
-                <com.beardedhen.androidbootstrap.FontAwesomeText
+                <com.beardedhen.androidbootstrap.AwesomeTextView
                     android:id="@+id/edit_basic_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -67,7 +65,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:visibility="gone"
-                    bootstrap:fa_icon="fa-edit" />
+                    bootstrap:fontAwesomeIcon="fa_edit" />
             </TableRow>
 
             <TableRow
@@ -232,8 +230,8 @@
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:text="@string/invite_user"
-                    bootstrap:bb_roundedCorners="true"
-                    bootstrap:bb_type="success"
+                    bootstrap:roundedCorners="true"
+                    bootstrap:bootstrapBrand="success"
                     android:visibility="gone"/>
             </TableRow>
 
@@ -247,8 +245,8 @@
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:text="@string/reset_pwd"
-                    bootstrap:bb_roundedCorners="true"
-                    bootstrap:bb_type="warning"
+                    bootstrap:roundedCorners="true"
+                    bootstrap:bootstrapBrand="warning"
                     android:visibility="gone" />
             </TableRow>
 

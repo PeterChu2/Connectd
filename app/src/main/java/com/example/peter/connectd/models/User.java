@@ -1,11 +1,16 @@
 package com.example.peter.connectd.models;
 
+import android.content.Context;
+
+import com.example.peter.connectd.rest.ConnectdApiService;
+import com.example.peter.connectd.rest.OnAsyncHttpRequestCompleteListener;
 import com.example.peter.connectd.rest.SocialApiClients;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -97,6 +102,35 @@ public class User {
         return null;
     }
 
+    public void addAuthorizations(Context context, ConnectdApiService connectdApiService, List<Authorization> auths) {
+        JSONObject updateParams = new JSONObject();
+        JSONObject userParams = new JSONObject();
+        JSONObject authParams = new JSONObject();
+        try {
+            for(Authorization auth: auths) {
+                authParams.put(auth.getSocialMediaName().name(), auth.getIdentifier());
+            }
+            userParams.put("TMP", authParams);
+            updateParams.put(User.USER_KEY, userParams);
+        } catch (JSONException e) {
+            // NOP
+        }
+        connectdApiService.updateUser(context, mId, updateParams, (OnAsyncHttpRequestCompleteListener) context);
+    }
+
+    public void addAuthorization(Context context, ConnectdApiService connectdApiService, Authorization auth) {
+        JSONObject updateParams = new JSONObject();
+        JSONObject userParams = new JSONObject();
+        JSONObject authParams = new JSONObject();
+        try {
+            authParams.put(auth.getSocialMediaName().name(), auth.getIdentifier());
+            updateParams.put(User.USER_KEY, userParams);
+        } catch (JSONException e) {
+            // NOP
+        }
+        connectdApiService.updateUser(context, mId, updateParams, (OnAsyncHttpRequestCompleteListener) context);
+    }
+
     public static class Builder {
         private int mId;
         private String mEmail;
@@ -144,31 +178,31 @@ public class User {
 
         public Builder setFacebookUsername(String facebookUsername) {
             mFacebookUsername = facebookUsername;
-            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.FACEBOOK, facebookUsername, null));
+            mAuthorizations.add(new Authorization(SocialApiClients.Name.FACEBOOK, facebookUsername, null));
             return this;
         }
 
         public Builder setTwitterUsername(String twitterUsername) {
             mTwitterUsername = twitterUsername;
-            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.TWITTER, twitterUsername, null));
+            mAuthorizations.add(new Authorization(SocialApiClients.Name.TWITTER, twitterUsername, null));
             return this;
         }
 
         public Builder setInstagramId(String instagramId) {
             mInstagramId = instagramId;
-            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.INSTAGRAM, instagramId, null));
+            mAuthorizations.add(new Authorization(SocialApiClients.Name.INSTAGRAM, instagramId, null));
             return this;
         }
 
         public Builder setGPlusId(String gPlusId) {
             mGPlusId = gPlusId;
-            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.GPLUS, gPlusId, null));
+            mAuthorizations.add(new Authorization(SocialApiClients.Name.GPLUS, gPlusId, null));
             return this;
         }
 
         public Builder setLinkedInId(String linkedInId) {
             mLinkedInId = linkedInId;
-            mAuthorizations.add(new Authorization(SocialApiClients.SocialMediaName.LINKEDIN, linkedInId, null));
+            mAuthorizations.add(new Authorization(SocialApiClients.Name.LINKEDIN, linkedInId, null));
             return this;
         }
 
@@ -281,17 +315,17 @@ public class User {
      * Model Object to represent Authorization information for each social media platform
      */
     public static class Authorization {
-        SocialApiClients.SocialMediaName mSocialMediaName;
+        SocialApiClients.Name mSocialMediaName;
         String mIdentifier;
         String mPicture;
 
-        public Authorization(SocialApiClients.SocialMediaName socialMediaName, String identifier, String picture) {
+        public Authorization(SocialApiClients.Name socialMediaName, String identifier, String picture) {
             mSocialMediaName = socialMediaName;
             mIdentifier = identifier;
             mPicture = picture;
         }
 
-        public SocialApiClients.SocialMediaName getSocialMediaName() {
+        public SocialApiClients.Name getSocialMediaName() {
             return mSocialMediaName;
         }
 

@@ -17,9 +17,18 @@
         android:orientation="vertical"
         android:padding="10dp">
 
+        <com.beardedhen.androidbootstrap.AwesomeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            bootstrap:bootstrapBrand="success"
+            android:text="@string/app_name"
+            android:layout_gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            />
+
         <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center"
             android:contentDescription="@string/app_logo"
             android:src="@drawable/connectd" />
@@ -30,7 +39,8 @@
             android:layout_height="wrap_content"
             android:hint="First Name"
             android:padding="10dp"
-            android:textColorHint="#bbbbbb" />
+            android:textColorHint="#bbbbbb"
+            bootstrap:bootstrapSize="lg"/>
 
         <com.beardedhen.androidbootstrap.BootstrapEditText
             android:id="@+id/sign_up_et_last_name"
@@ -38,7 +48,8 @@
             android:layout_height="wrap_content"
             android:hint="Last Name"
             android:padding="10dp"
-            android:textColorHint="#bbbbbb" />
+            android:textColorHint="#bbbbbb"
+            bootstrap:bootstrapSize="lg"/>
 
         <com.beardedhen.androidbootstrap.BootstrapEditText
             android:id="@+id/sign_up_et_email"
@@ -46,7 +57,8 @@
             android:layout_height="wrap_content"
             android:hint="Email"
             android:padding="10dp"
-            android:textColorHint="#bbbbbb" />
+            android:textColorHint="#bbbbbb"
+            bootstrap:bootstrapSize="lg"/>
 
         <com.beardedhen.androidbootstrap.BootstrapEditText
             android:id="@+id/sign_up_et_username"
@@ -55,7 +67,8 @@
             android:layout_marginTop="-2dp"
             android:hint="@string/username_hint"
             android:padding="10dp"
-            android:textColorHint="#bbbbbb" />
+            android:textColorHint="#bbbbbb"
+            bootstrap:bootstrapSize="lg"/>
 
         <com.beardedhen.androidbootstrap.BootstrapEditText
             android:id="@+id/sign_up_et_password"
@@ -65,7 +78,8 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="10dp"
-            android:textColorHint="#bbbbbb" />
+            android:textColorHint="#bbbbbb"
+            bootstrap:bootstrapSize="lg"/>
 
         <com.beardedhen.androidbootstrap.BootstrapEditText
             android:id="@+id/sign_up_et_password_confirmation"
@@ -75,7 +89,8 @@
             android:hint="Password Confirmation"
             android:inputType="textPassword"
             android:padding="10dp"
-            android:textColorHint="#bbbbbb" />
+            android:textColorHint="#bbbbbb"
+            bootstrap:bootstrapSize="lg"/>
 
         <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/btnSignUpSubmit"
@@ -83,9 +98,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:padding="10dp"
-            android:text="Sign In"
-            bootstrap:bb_roundedCorners="true"
-            bootstrap:bb_type="success" />
+            android:text="@string/sign_up"
+            bootstrap:roundedCorners="true"
+            bootstrap:bootstrapBrand="success"
+            bootstrap:bootstrapSize="lg"/>
     </LinearLayout>
 
 </RelativeLayout>

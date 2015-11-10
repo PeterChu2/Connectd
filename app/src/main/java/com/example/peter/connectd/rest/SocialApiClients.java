@@ -57,6 +57,15 @@ import twitter4j.conf.ConfigurationBuilder;
  * Class to manage all the different social media platforms.
  */
 public class SocialApiClients {
+    public static final String FACEBOOK_ACCOUNT_TYPE = "com.facebook.auth.login";
+    public static final String EMAIL_ACCOUNT_TYPE = "com.android.email";
+    public static final String LINKEDIN_ACCOUNT_TYPE = "com.linkedin.android";
+    public static final String TWITTER_ACCOUNT_TYPE = "com.twitter.android.auth.login";
+    public static final String GOOGLE_ACCOUNT = "com.google";
+    public static final String GITHUB_ACCOUNT = "com.github";
+
+    public static final String TWITTER_AUTH_TOKEN_TYPE = "com.twitter.android.oauth.token";
+
     private static final String FACEBOOK_APP_SECRET = "4ee26bcb519450184d31917305b63357";
     private static final String TWITTER_CONSUMER_KEY = "lGJcPrnQCrMfLvhYlSRQCnEef";
     private static final String TWITTER_CONSUMER_SECRET = "dYKcPlUibwIW2EI0Bn51LotigUKdWpZofbcBIdYWzUshsjHRCg";
@@ -72,7 +81,7 @@ public class SocialApiClients {
     private static PlusDomains sPlusDomains;
     private static LinkedInApiClient sLinkedInApiClient;
 
-    public enum SocialMediaName {
+    public enum Name {
         TWITTER, FACEBOOK, INSTAGRAM, GPLUS, LINKEDIN
     }
 

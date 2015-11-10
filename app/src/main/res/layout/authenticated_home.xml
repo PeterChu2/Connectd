@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:padding="5dp"
-            bootstrap:bct_image="@drawable/icon_user_default" />
+            android:src="@drawable/icon_user_default" />
     </LinearLayout>
 
     <ImageView

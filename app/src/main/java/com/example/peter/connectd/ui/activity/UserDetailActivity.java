@@ -1,26 +1,36 @@
 package com.example.peter.connectd.ui.activity;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.accounts.AccountManagerCallback;
+import android.accounts.AccountManagerFuture;
+import android.accounts.AuthenticatorException;
+import android.accounts.OperationCanceledException;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.beardedhen.androidbootstrap.AwesomeTextView;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.beardedhen.androidbootstrap.BootstrapEditText;
 import com.beardedhen.androidbootstrap.BootstrapThumbnail;
-import com.beardedhen.androidbootstrap.FontAwesomeText;
 import com.example.peter.connectd.R;
 import com.example.peter.connectd.models.SearchResult;
 import com.example.peter.connectd.models.User;
 import com.example.peter.connectd.rest.ConnectdApiClient;
 import com.example.peter.connectd.rest.ConnectdApiService;
 import com.example.peter.connectd.rest.OnAsyncHttpRequestCompleteListener;
+import com.example.peter.connectd.rest.SocialApiClients;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.BinaryHttpResponseHandler;
 
@@ -28,6 +38,7 @@ import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -40,7 +51,7 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
     private BootstrapEditText mEtFirstName;
     private BootstrapEditText mEtLastName;
     private BootstrapEditText mEtEmail;
-    private FontAwesomeText mFaEdit;
+    private AwesomeTextView mFaEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +70,7 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
                 // TODO - reset password - setup SendGrid
             }
         });
-        mFaEdit = (FontAwesomeText) findViewById(R.id.edit_basic_info);
+        mFaEdit = (AwesomeTextView) findViewById(R.id.edit_basic_info);
         mFaEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,7 +120,7 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
     @Override
     public void onUserLoaded(User user) {
         mCurrentUser = user;
-        if(mFaEdit.isActivated()) {
+        if (mFaEdit.isActivated()) {
             mFaEdit.setActivated(false);
             mEtUsername.setEnabled(false);
             mEtUsername.setFocusable(false);
@@ -140,17 +151,71 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
         if (currentUserLogin.equals(mCurrentUser.getEmail().toLowerCase()) ||
                 currentUserLogin.equals(mCurrentUser.getUsername().toLowerCase())) {
             // viewing own detail page - show edit button, and reset password button
-            FontAwesomeText faEdit = (FontAwesomeText) findViewById(R.id.edit_basic_info);
+            AwesomeTextView faEdit = (AwesomeTextView) findViewById(R.id.edit_basic_info);
             faEdit.setVisibility(View.VISIBLE);
             BootstrapButton resetPwdButton = (BootstrapButton) findViewById(R.id.detail_reset_pwd);
             resetPwdButton.setVisibility(View.VISIBLE);
+
+
+            // show button to get Connectd
+            BootstrapButton getConnectdButton = (BootstrapButton) findViewById(R.id.get_connectd_button);
+            getConnectdButton.setVisibility(View.VISIBLE);
+            getConnectdButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AccountManager accountManager = AccountManager.get(UserDetailActivity.this);
+                    Account[] accounts = accountManager.getAccountsByType(null);
+                    if(accounts != null) {
+                        for (Account account : accounts) {
+                            User.Authorization auth = null;
+                            switch (account.type) {
+                                case SocialApiClients.TWITTER_ACCOUNT_TYPE:
+                                    auth = new User.Authorization(SocialApiClients.Name.TWITTER, account.name, null);
+                                    mCurrentUser.addAuthorization(UserDetailActivity.this, mConnectedApiService, auth);
+                                    break;
+                                case SocialApiClients.EMAIL_ACCOUNT_TYPE:
+                                    break;
+                                case SocialApiClients.FACEBOOK_ACCOUNT_TYPE:
+                                    auth = new User.Authorization(SocialApiClients.Name.FACEBOOK, account.name, null);
+                                    mCurrentUser.addAuthorization(UserDetailActivity.this, mConnectedApiService, auth);
+                                    break;
+                                case SocialApiClients.GITHUB_ACCOUNT:
+                                    break;
+                                case SocialApiClients.GOOGLE_ACCOUNT:
+                                    auth = new User.Authorization(SocialApiClients.Name.GPLUS, account.name, null);
+                                    mCurrentUser.addAuthorization(UserDetailActivity.this, mConnectedApiService, auth);
+                                    break;
+                                case SocialApiClients.LINKEDIN_ACCOUNT_TYPE:
+                                    auth = new User.Authorization(SocialApiClients.Name.LINKEDIN, account.name, null);
+                                    mCurrentUser.addAuthorization(UserDetailActivity.this, mConnectedApiService, auth);
+                                    break;
+                            }
+                        }
+                    }
+                }
+            });
+
         } else {
             // show button to get Connectd
             BootstrapButton getConnectdButton = (BootstrapButton) findViewById(R.id.get_connectd_button);
             getConnectdButton.setVisibility(View.VISIBLE);
+            getConnectdButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        sendConnectionRequests();
+                    } catch (AuthenticatorException e) {
+                        e.printStackTrace();
+                    } catch (OperationCanceledException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
 
-        if(mCurrentUser.getProfilePicture() != null) {
+        if (mCurrentUser.getProfilePicture() != null) {
             AsyncHttpClient client = new AsyncHttpClient();
             client.get(mCurrentUser.getProfilePicture(), null, new BinaryHttpResponseHandler() {
                 @Override
@@ -161,6 +226,7 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
                     profilePicture.invalidate();
                     profilePicture.requestLayout();
                 }
+
                 @Override
                 public void onFailure(int statusCode, Header[] headers, byte[] binaryData, Throwable error) {
                     // NOP
@@ -179,5 +245,89 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
         mEtFirstName.setText(mCurrentUser.getFirstName());
         mEtLastName.setText(mCurrentUser.getLastName());
         mEtEmail.setText(mCurrentUser.getEmail());
+    }
+
+    private void sendConnectionRequests() throws AuthenticatorException, OperationCanceledException, IOException {
+        final AccountManager accountManager = AccountManager.get(this);
+        Account socialMediaAccount1 = accountManager.getAccountsByType(SocialApiClients.TWITTER_ACCOUNT_TYPE)[0];
+//        String auth = accountManager.getAuthToken(socialMediaAccount1, SocialApiClients.TWITTER_ACCOUNT_TYPE, null, UserDetailActivity.this, new AccountManagerCallback<Bundle>() {
+//            @Override
+//            public void run(AccountManagerFuture<Bundle> arg0) {
+//                try {
+//                    Bundle b = arg0.getResult();
+//                    Log.d("PETER", "twitter THIS AUHTOKEN: "
+//                            + b.getString(AccountManager.KEY_AUTHTOKEN));
+//                    Intent launch = (Intent) b
+//                            .get(AccountManager.KEY_INTENT);
+//                    if (launch != null) {
+//                        startActivityForResult(launch, 0);
+//                        return;
+//                    }
+//                } catch (Exception e) {
+//                    Log.d("PETER", "EXCEPTION@AUTHTOKEN");
+//                }
+//            }
+//        }, new Handler()).getResult().getString(AccountManager.KEY_AUTHTOKEN);
+        AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+                final AccountManager accountManager = AccountManager.get(UserDetailActivity.this);
+                Account socialMediaAccount1 = accountManager.getAccountsByType(SocialApiClients.TWITTER_ACCOUNT_TYPE)[0];
+                Log.d("PETER", "got twitter");
+                String authToken1 = null;
+                try {
+                    Log.d("PETER", "tryGET");
+//                    authToken1 = accountManager.blockingGetAuthToken(socialMediaAccount1, SocialApiClients.TWITTER_AUTH_TOKEN_TYPE, true);
+                    String tok = accountManager.getAuthToken(socialMediaAccount1, SocialApiClients.TWITTER_ACCOUNT_TYPE, null, UserDetailActivity.this, new AccountManagerCallback<Bundle>() {
+                        @Override
+                        public void run(AccountManagerFuture<Bundle> arg0) {
+                            try {
+                                Bundle b = arg0.getResult();
+                                Log.d("PETER", "twitter THIS AUHTOKEN: "
+                                        + b.getString(AccountManager.KEY_AUTHTOKEN));
+                                Intent launch = (Intent) b
+                                        .get(AccountManager.KEY_INTENT);
+                                if (launch != null) {
+                                    startActivityForResult(launch, 0);
+                                    return;
+                                }
+                            } catch (Exception e) {
+                                Log.d("PETER", "EXCEPTION@AUTHTOKEN");
+                            }
+                        }
+                    }, null).getResult().getString(AccountManager.KEY_AUTHTOKEN);
+                    Log.d("PETER", "got "+tok);
+                    return tok;
+                } catch (OperationCanceledException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (AuthenticatorException e) {
+                    e.printStackTrace();
+                }
+                return authToken1;
+            }
+
+            @Override
+            protected void onPostExecute(String token) {
+                Log.d("PETER", "Access token retrieved:" + token);
+            }
+
+        };
+        task.execute();
+//        String authToken1 = accountManager.blockingGetAuthToken(socialMediaAccount1, SocialApiClients.TWITTER_AUTH_TOKEN_TYPE, false);
+//        Log.d("PETER", "auth token is " + authToken1);
+//        for(User.Authorization authorization : mCurrentUser.getAuthorizations()) {
+//            Account socialMediaAccount;
+//            switch(authorization.getSocialMediaName()) {
+//                case TWITTER:
+//                    socialMediaAccount = accountManager.getAccountsByType(SocialApiClients.TWITTER_ACCOUNT_TYPE)[0];
+//                    String authToken = accountManager.blockingGetAuthToken(socialMediaAccount, SocialApiClients.TWITTER_AUTH_TOKEN_TYPE, false);
+//                    Log.d("PETER", "auth token is " + authToken);
+//                    break;
+//                case LINKEDIN:
+//                    break;
+//            }
+//        }
     }
 }

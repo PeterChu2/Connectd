@@ -7,12 +7,11 @@
     android:padding="20dp">
 
     <com.beardedhen.androidbootstrap.BootstrapThumbnail
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        bootstrap:bt_width="50dp"
-        bootstrap:bt_height="50dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:id="@+id/result_thumbnail"
-        bootstrap:bt_image="@drawable/icon_user_default" />
+        android:src="@drawable/icon_user_default"
+        bootstrap:hasBorder="true" />
 
     <TextView
         android:layout_width="wrap_content"
