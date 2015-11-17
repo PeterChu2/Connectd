@@ -133,7 +133,6 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("PETER", "TEST");
         Intent intent = getIntent();
         if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(intent.getAction())) {
             Parcelable[] rawMessages = intent.getParcelableArrayExtra(

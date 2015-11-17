@@ -125,12 +125,22 @@ public class AuthenticatedHomeActivity extends Activity implements NfcAdapter.Cr
     @Override
     public NdefMessage createNdefMessage(NfcEvent event) {
 //        String text = String.valueOf(User.getCurrentUser().getId());
-        String text = "test data";
-        NdefRecord ndefRecord = NdefRecord.createMime("application/vnd.com.example.peter.connectd", text.getBytes());
-        NdefMessage ndefMessage = new NdefMessage(new NdefRecord[] {
-                ndefRecord,
-                NdefRecord.createApplicationRecord("com.example.peter.connectd")
-        });
+        SharedPreferences sharedPrefs = PreferenceManager
+                .getDefaultSharedPreferences(AuthenticatedHomeActivity.this);
+        String senderId = sharedPrefs.getString(ConnectdApiClient.SHAREDPREF_CURRENT_USER_KEY, null);
+
+        NdefMessage ndefMessage = null;
+        if(senderId != null) {
+            NdefRecord ndefRecord = NdefRecord.createMime("application/vnd.com.example.peter.connectd", senderId.getBytes());
+            ndefMessage = new NdefMessage(new NdefRecord[] {
+                    ndefRecord,
+                    NdefRecord.createApplicationRecord("com.example.peter.connectd")
+            });
+        } else {
+            ndefMessage = new NdefMessage(new NdefRecord[] {
+                    NdefRecord.createApplicationRecord("com.example.peter.connectd")
+            });
+        }
         return ndefMessage;
     }
 
