@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.nfc.NdefMessage;
-import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
 import android.os.Bundle;
@@ -127,11 +126,8 @@ public class AuthenticatedHomeActivity extends Activity implements NfcAdapter.Cr
     @Override
     public NdefMessage createNdefMessage(NfcEvent event) {
         String text = String.valueOf(User.getCurrentUser().getId());
-        return new NdefMessage(
-                new NdefRecord[]{createMime(
-                        "application/vnd.com.example.peter.connectd", text.getBytes())
-                        , NdefRecord.createApplicationRecord("com.example.peter.connectd")
-                });
+        return new NdefMessage(createMime(
+                        "text/plain", text.getBytes()));
     }
 
     @Override

@@ -12,8 +12,11 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.nfc.NdefMessage;
+import android.nfc.NfcAdapter;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
@@ -31,15 +34,29 @@ import com.example.peter.connectd.rest.ConnectdApiClient;
 import com.example.peter.connectd.rest.ConnectdApiService;
 import com.example.peter.connectd.rest.OnAsyncHttpRequestCompleteListener;
 import com.example.peter.connectd.rest.SocialApiClients;
+import com.google.api.services.plusDomains.PlusDomains;
+import com.google.api.services.plusDomains.model.Circle;
+import com.google.api.services.plusDomains.model.CircleFeed;
+import com.google.code.linkedinapi.client.LinkedInApiClient;
+import com.google.code.linkedinapi.client.constant.ApplicationConstants;
+import com.google.code.linkedinapi.schema.HttpHeader;
+import com.google.code.linkedinapi.schema.Person;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.BinaryHttpResponseHandler;
 
 import org.apache.http.Header;
+import org.jinstagram.Instagram;
+import org.jinstagram.exceptions.InstagramException;
+import org.jinstagram.model.Relationship;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
 
 /**
  * Created by peter on 27/08/15.
@@ -58,11 +75,7 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_detail_activity);
         mConnectedApiService = ConnectdApiClient.getApiService();
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String login = sharedPreferences.getString(ConnectdApiClient.SHAREDPREF_LOGIN_KEY, null);
-        if (login != null) {
-            mConnectedApiService.findUserByLogin(this, login, this);
-        }
+
         BootstrapButton resetPasswordButton = (BootstrapButton) findViewById(R.id.detail_reset_pwd);
         resetPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,6 +128,84 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("PETER", "TEST");
+        Intent intent = getIntent();
+        if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(intent.getAction())) {
+            Parcelable[] rawMessages = intent.getParcelableArrayExtra(
+                    NfcAdapter.EXTRA_NDEF_MESSAGES);
+            NdefMessage message = (NdefMessage) rawMessages[0]; // only one message transferred
+            String friendLogin = new String(message.getRecords()[0].getPayload());
+            mConnectedApiService.findUserByLogin(this, friendLogin, this);
+        } else {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            String login = sharedPreferences.getString(ConnectdApiClient.SHAREDPREF_LOGIN_KEY, null);
+            if (login != null) {
+                mConnectedApiService.findUserByLogin(this, login, this);
+            }
+        }
+    }
+
+    private void sendInvitation(User user) {
+        for (User.Authorization authorization : user.getAuthorizations()) {
+            switch (authorization.getSocialMediaName()) {
+                case FACEBOOK:
+                    break;
+                case TWITTER:
+                    Twitter twitterClient = SocialApiClients.getTwitter(this);
+                    try {
+                        twitterClient.createFriendship(authorization.getIdentifier());
+                    } catch (TwitterException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case GPLUS:
+                    PlusDomains plusDomainsClient = SocialApiClients.getGPlus(this);
+                    List<String> addUserIds = new ArrayList<String>();
+                    addUserIds.add(authorization.getIdentifier());
+                    try {
+                        PlusDomains.Circles.List listCircles = plusDomainsClient.circles().list("me");
+                        listCircles.setMaxResults(1L);
+                        CircleFeed circleFeed = listCircles.execute();
+                        List<Circle> circles = circleFeed.getItems();
+                        for (Circle circle : circles) {
+                            PlusDomains.Circles.AddPeople addPeople = plusDomainsClient.circles()
+                                    .addPeople(circle.getId());
+                            addPeople.setUserId(addUserIds);
+                            addPeople.execute();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case INSTAGRAM:
+                    Instagram instagramClient = SocialApiClients.getInstagram();
+                    int userId = Integer.valueOf(authorization.getIdentifier());
+                    try {
+                        instagramClient.setUserRelationship(userId, Relationship.FOLLOW);
+                    } catch (InstagramException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case LINKEDIN:
+                    LinkedInApiClient linkedInApiClient = SocialApiClients.getLinkedIn(this);
+                    Person person = linkedInApiClient.getProfileForCurrentUser();
+                    String authHeader = "";
+                    for (HttpHeader header : person.getApiStandardProfileRequest().getHeaders().getHttpHeaderList()) {
+                        if (ApplicationConstants.AUTH_HEADER_NAME.equals(header.getName())) {
+                            authHeader = header.getName();
+                        }
+                    }
+                    linkedInApiClient.sendInviteById(authorization.getIdentifier(),
+                            "Invitation to connect", "Please add me to your network. Invitation sent from Connectd",
+                            authHeader);
+                    break;
+            }
+        }
     }
 
     @Override

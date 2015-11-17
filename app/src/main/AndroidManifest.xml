@@ -68,15 +68,17 @@
         <activity
             android:name=".ui.activity.InvitationAcceptedActivity"
             android:label="NFC Data Display">
-            <intent-filter>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="application/vnd.com.example.peter.connectd" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".ui.activity.UserDetailActivity"
-            android:label="User Detail Page"></activity>
+            android:label="User Detail Page">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
 
 
     </application>
