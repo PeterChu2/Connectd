@@ -51,7 +51,7 @@ public class SignInActivity extends AccountAuthenticatorActivity implements OnAu
     }
 
     @Override
-    public void onAuthenticate(String login) {
+    public void onAuthenticate(String login, String authToken) {
         mProgressDialog.dismiss();
         SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager
                 .getDefaultSharedPreferences(this).edit();
@@ -59,6 +59,8 @@ public class SignInActivity extends AccountAuthenticatorActivity implements OnAu
                 SHAREDPREF_LOGIN_KEY, login.toLowerCase()).apply();
         sharedPreferencesEditor.putString(ConnectdApiClient.
                 SHAREDPREF_CURRENT_USER_KEY, login.toLowerCase()).apply();
+        sharedPreferencesEditor.putString(ConnectdApiClient.
+                AUTH_KEY, authToken).apply();
         // save account details in account manager
         final Account account = new Account(mEtLogin.getText().toString(),
                 ConnectdApiClient.CONNECTD_ACCOUNT_TYPE);

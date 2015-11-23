@@ -7,7 +7,7 @@ public interface OnAuthenticateListener {
     /**
      * Invoked when the user successfully signs in.
      */
-    void onAuthenticate(String login);
+    void onAuthenticate(String login, String authToken);
 
     /**
      * Invoked when the user has unsuccessfully attempted to sign in.

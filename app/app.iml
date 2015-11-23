@@ -100,25 +100,25 @@
     <orderEntry type="library" exported="" name="linkedin-j-android" level="project" />
     <orderEntry type="library" exported="" name="1_linkedin-j-android" level="project" />
     <orderEntry type="library" exported="" name="google-api-client-1.20.0" level="project" />
-    <orderEntry type="library" exported="" name="twitter4j-core-4.0.1" level="project" />
     <orderEntry type="library" exported="" name="jackson-core-2.1.3" level="project" />
-    <orderEntry type="library" exported="" name="jInstagram-1.0.3" level="project" />
+    <orderEntry type="library" exported="" name="twitter4j-core-4.0.1" level="project" />
     <orderEntry type="library" exported="" name="gson-2.2.2" level="project" />
+    <orderEntry type="library" exported="" name="jInstagram-1.0.3" level="project" />
     <orderEntry type="library" exported="" name="bolts-android-1.2.0" level="project" />
     <orderEntry type="library" exported="" name="google-http-client-jackson2-1.20.0" level="project" />
     <orderEntry type="library" exported="" name="android-async-http-1.4.8" level="project" />
     <orderEntry type="library" exported="" name="support-v4-23.0.0" level="project" />
     <orderEntry type="library" exported="" name="androidbootstrap-2.0.0" level="project" />
     <orderEntry type="library" exported="" name="design-23.0.0" level="project" />
-    <orderEntry type="library" exported="" name="httpcore-4.3.2" level="project" />
     <orderEntry type="library" exported="" name="google-api-services-plusDomains-v1-rev121-1.20.0" level="project" />
+    <orderEntry type="library" exported="" name="httpcore-4.3.2" level="project" />
     <orderEntry type="library" exported="" name="guava-jdk5-13.0" level="project" />
     <orderEntry type="library" exported="" name="facebook-android-sdk-4.1.0" level="project" />
     <orderEntry type="library" exported="" name="google-oauth-client-1.20.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.0.0" level="project" />
     <orderEntry type="library" exported="" name="library-2.4.0" level="project" />
-    <orderEntry type="library" exported="" name="google-api-services-plus-v1-rev219-1.20.0" level="project" />
     <orderEntry type="library" exported="" name="commons-lang3-3.1" level="project" />
+    <orderEntry type="library" exported="" name="google-api-services-plus-v1-rev219-1.20.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.0.1" level="project" />
   </component>
 </module>

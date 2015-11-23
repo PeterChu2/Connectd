@@ -7,6 +7,7 @@ public class ConnectdApiClient {
     public static String CONNECTD_ACCOUNT_TYPE="com.peter.connectd";
     public final static String CONNECTD_ENDPOINT = "http://connectd.herokuapp.com";
     public final static String SHAREDPREF_LOGIN_KEY = "com.example.peter.connectd.login";
+    public final static String AUTH_KEY = "com.example.peter.connectd.auth";
     public final static String SHAREDPREF_CURRENT_USER_KEY = "com.example.peter.connectd.current.user";
     public final static String RELATIVE_SEARCH_ENDPOINT = "user/search";
     public final static String RELATIVE_AUTOCOMPLETE_ENDPOINT = "users/autocomplete";

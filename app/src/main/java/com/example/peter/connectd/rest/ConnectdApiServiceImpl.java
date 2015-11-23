@@ -2,6 +2,9 @@ package com.example.peter.connectd.rest;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.example.peter.connectd.models.SearchResult;
 import com.example.peter.connectd.models.User;
@@ -9,7 +12,6 @@ import com.example.peter.connectd.ui.activity.AuthenticatedHomeActivity;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.loopj.android.http.TextHttpResponseHandler;
 
 import org.apache.http.Header;
 import org.apache.http.entity.StringEntity;
@@ -118,26 +120,48 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
         } catch (JSONException e) {
             // NOP
         }
-        TextHttpResponseHandler httpResponseHandler = new TextHttpResponseHandler() {
+        JsonHttpResponseHandler httpResponseHandler = new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
                 if ((statusCode == 302) || (responseString.contains("Signed in successfully"))) {
                     // redirect in rails app logic -> authenticated
-                    authenticateListener.onAuthenticate(login);
+                    String authToken = "";//TODO
+                    authenticateListener.onAuthenticate(login, authToken);
                 } else  {
                     authenticateListener.onAuthenticateFailed();
                 }
             }
 
             @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                super.onSuccess(statusCode, headers, response);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+
+            @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 // NOP
+                Log.d("PETER", "TeS");
             }
         };
 
         try {
             StringEntity entity = new StringEntity(params.toString());
-            mAsyncHttpClient.addHeader("Accept", "text/html");
+            mAsyncHttpClient.addHeader("Accept", "application/json");
             mAsyncHttpClient.post(context, ConnectdApiClient.CONNECTD_ENDPOINT + "/users/sign_in",
                     entity, "application/json", httpResponseHandler);
         } catch (UnsupportedEncodingException e) {
@@ -164,22 +188,41 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
             // NOP
         }
 
-        TextHttpResponseHandler httpResponseHandler = new TextHttpResponseHandler() {
+        JsonHttpResponseHandler httpResponseHandler = new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
                 if (statusCode == 200 || statusCode == 302) {
+                    String login = "";//get login here;
+                    String auth = ""; //get auth here
+
+                    SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager
+                            .getDefaultSharedPreferences(context).edit();
+
+                    sharedPreferencesEditor.putString(ConnectdApiClient.
+                            AUTH_KEY, auth).apply();
+                    sharedPreferencesEditor.putString(ConnectdApiClient.
+                            SHAREDPREF_LOGIN_KEY, login.toLowerCase()).apply();
+                    sharedPreferencesEditor.putString(ConnectdApiClient.
+                            SHAREDPREF_CURRENT_USER_KEY, login.toLowerCase()).apply();
+
+
                     context.startActivity(new Intent(context, AuthenticatedHomeActivity.class));
                 }
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                // NOP
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                super.onSuccess(statusCode, headers, response);
             }
         };
 
         try {
-            mAsyncHttpClient.addHeader("Accept", "text/html");
+            mAsyncHttpClient.addHeader("Accept", "application/json");
             StringEntity entity = new StringEntity(params.toString());
             mAsyncHttpClient.post(context, ConnectdApiClient.CONNECTD_ENDPOINT + "/users",
                     entity, "application/json", httpResponseHandler);
@@ -199,8 +242,8 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
         } catch (UnsupportedEncodingException e) {
             // NOP
         }
-        mAsyncHttpClient.put(context, String.format("%s/%s/%d", ConnectdApiClient.CONNECTD_ENDPOINT,
-                ConnectdApiClient.RELATIVE_USERS_ENDPOINT, id), entity, "application/json",
+        mAsyncHttpClient.post(context, String.format("%s/%s/%d", ConnectdApiClient.CONNECTD_ENDPOINT,
+                        ConnectdApiClient.RELATIVE_USERS_ENDPOINT, id), entity, "application/json",
                 new JsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -211,7 +254,7 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
                             } catch (JSONException e) {
                                 // NOP
                             }
-                        } else if(statusCode == 500) {
+                        } else if (statusCode == 500) {
                             listener.onUserLoadFailed("User was not successfully saved. Your edited email or username is already registered.");
                         }
                     }

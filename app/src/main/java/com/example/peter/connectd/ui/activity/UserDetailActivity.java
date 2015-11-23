@@ -1,5 +1,6 @@
 package com.example.peter.connectd.ui.activity;
 
+import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
@@ -9,6 +10,7 @@ import android.accounts.OperationCanceledException;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -18,6 +20,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -61,7 +66,7 @@ import twitter4j.TwitterException;
 /**
  * Created by peter on 27/08/15.
  */
-public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCompleteListener {
+public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCompleteListener, OnRequestPermissionsResultCallback {
     private ConnectdApiService mConnectedApiService;
     private User mCurrentUser;
     private BootstrapEditText mEtUsername;
@@ -69,6 +74,8 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
     private BootstrapEditText mEtLastName;
     private BootstrapEditText mEtEmail;
     private AwesomeTextView mFaEdit;
+    private static final int ADD_ACCOUNTS_PERMISSION = 0;
+    private static final int CONNECT_ACCOUNTS_PERMISSION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -253,54 +260,58 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
             getConnectdButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AccountManager accountManager = AccountManager.get(UserDetailActivity.this);
-                    Account[] accounts = accountManager.getAccountsByType(null);
-                    if(accounts != null) {
-                        for (Account account : accounts) {
-                            User.Authorization auth = null;
-                            switch (account.type) {
-                                case SocialApiClients.TWITTER_ACCOUNT_TYPE:
-                                    auth = new User.Authorization(SocialApiClients.Name.TWITTER, account.name, null);
-                                    mCurrentUser.addAuthorization(UserDetailActivity.this, mConnectedApiService, auth);
-                                    break;
-                                case SocialApiClients.EMAIL_ACCOUNT_TYPE:
-                                    break;
-                                case SocialApiClients.FACEBOOK_ACCOUNT_TYPE:
-                                    auth = new User.Authorization(SocialApiClients.Name.FACEBOOK, account.name, null);
-                                    mCurrentUser.addAuthorization(UserDetailActivity.this, mConnectedApiService, auth);
-                                    break;
-                                case SocialApiClients.GITHUB_ACCOUNT:
-                                    break;
-                                case SocialApiClients.GOOGLE_ACCOUNT:
-                                    auth = new User.Authorization(SocialApiClients.Name.GPLUS, account.name, null);
-                                    mCurrentUser.addAuthorization(UserDetailActivity.this, mConnectedApiService, auth);
-                                    break;
-                                case SocialApiClients.LINKEDIN_ACCOUNT_TYPE:
-                                    auth = new User.Authorization(SocialApiClients.Name.LINKEDIN, account.name, null);
-                                    mCurrentUser.addAuthorization(UserDetailActivity.this, mConnectedApiService, auth);
-                                    break;
-                            }
+                    int permissionCheck = ContextCompat.checkSelfPermission(UserDetailActivity.this,
+                            Manifest.permission.GET_ACCOUNTS);
+                    if (permissionCheck == PackageManager.PERMISSION_DENIED) {
+                        if (ActivityCompat.shouldShowRequestPermissionRationale(UserDetailActivity.this,
+                                Manifest.permission.GET_ACCOUNTS)) {
+                        } else {
+                            ActivityCompat.requestPermissions(UserDetailActivity.this,
+                                    new String[]{Manifest.permission.GET_ACCOUNTS},
+                                    ADD_ACCOUNTS_PERMISSION);
                         }
+                    } else {
+                        syncSocialMedia();
                     }
                 }
             });
 
         } else {
             // show button to get Connectd
-            BootstrapButton getConnectdButton = (BootstrapButton) findViewById(R.id.get_connectd_button);
+            BootstrapButton resetPwdButton = (BootstrapButton) findViewById(R.id.detail_reset_pwd);
+
+            final BootstrapButton getConnectdButton = (BootstrapButton) findViewById(R.id.get_connectd_button);
             getConnectdButton.setVisibility(View.VISIBLE);
+            resetPwdButton.setVisibility(View.INVISIBLE);
             getConnectdButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    try {
-                        sendConnectionRequests();
-                    } catch (AuthenticatorException e) {
-                        e.printStackTrace();
-                    } catch (OperationCanceledException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    getConnectdButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            int permissionCheck = ContextCompat.checkSelfPermission(UserDetailActivity.this,
+                                    Manifest.permission.GET_ACCOUNTS);
+                            if (permissionCheck == PackageManager.PERMISSION_DENIED) {
+                                if (ActivityCompat.shouldShowRequestPermissionRationale(UserDetailActivity.this,
+                                        Manifest.permission.GET_ACCOUNTS)) {
+                                } else {
+                                    ActivityCompat.requestPermissions(UserDetailActivity.this,
+                                            new String[]{Manifest.permission.GET_ACCOUNTS},
+                                            CONNECT_ACCOUNTS_PERMISSION);
+                                }
+                            } else {
+                                try {
+                                    sendConnectionRequests();
+                                } catch (AuthenticatorException e) {
+                                    e.printStackTrace();
+                                } catch (OperationCanceledException e) {
+                                    e.printStackTrace();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    });
                 }
             });
         }
@@ -337,8 +348,41 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
         mEtEmail.setText(mCurrentUser.getEmail());
     }
 
+    private void syncSocialMedia() {
+        AccountManager accountManager = AccountManager.get(UserDetailActivity.this);
+        Account[] accounts = accountManager.getAccountsByType(null);
+        if (accounts != null) {
+            for (Account account : accounts) {
+                User.Authorization auth = null;
+                switch (account.type) {
+                    case SocialApiClients.TWITTER_ACCOUNT_TYPE:
+                        auth = new User.Authorization(SocialApiClients.Name.TWITTER, account.name, null);
+                        mCurrentUser.addAuthorization(UserDetailActivity.this, mConnectedApiService, auth);
+                        break;
+                    case SocialApiClients.EMAIL_ACCOUNT_TYPE:
+                        break;
+                    case SocialApiClients.FACEBOOK_ACCOUNT_TYPE:
+                        auth = new User.Authorization(SocialApiClients.Name.FACEBOOK, account.name, null);
+                        mCurrentUser.addAuthorization(UserDetailActivity.this, mConnectedApiService, auth);
+                        break;
+                    case SocialApiClients.GITHUB_ACCOUNT:
+                        break;
+                    case SocialApiClients.GOOGLE_ACCOUNT:
+                        auth = new User.Authorization(SocialApiClients.Name.GPLUS, account.name, null);
+                        mCurrentUser.addAuthorization(UserDetailActivity.this, mConnectedApiService, auth);
+                        break;
+                    case SocialApiClients.LINKEDIN_ACCOUNT_TYPE:
+                        auth = new User.Authorization(SocialApiClients.Name.LINKEDIN, account.name, null);
+                        mCurrentUser.addAuthorization(UserDetailActivity.this, mConnectedApiService, auth);
+                        break;
+                }
+            }
+        }
+    }
+
     private void sendConnectionRequests() throws AuthenticatorException, OperationCanceledException, IOException {
         final AccountManager accountManager = AccountManager.get(this);
+        Account[] accounts = accountManager.getAccounts();
         Account socialMediaAccount1 = accountManager.getAccountsByType(SocialApiClients.TWITTER_ACCOUNT_TYPE)[0];
 //        String auth = accountManager.getAuthToken(socialMediaAccount1, SocialApiClients.TWITTER_ACCOUNT_TYPE, null, UserDetailActivity.this, new AccountManagerCallback<Bundle>() {
 //            @Override
@@ -419,5 +463,29 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
 //                    break;
 //            }
 //        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == ADD_ACCOUNTS_PERMISSION) {
+            if(grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                syncSocialMedia();
+            }
+        } else if(requestCode == CONNECT_ACCOUNTS_PERMISSION) {
+            try {
+                if(grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    sendConnectionRequests();
+                }
+            } catch (AuthenticatorException e) {
+                e.printStackTrace();
+            } catch (OperationCanceledException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -63,7 +63,7 @@ public class MainActivity extends Activity implements OnClickListener, OnAuthent
     }
 
     @Override
-    public void onAuthenticate(String login) {
+    public void onAuthenticate(String login, String authToken) {
         mProgressDialog.dismiss();
         SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager
                 .getDefaultSharedPreferences(this).edit();
@@ -71,6 +71,8 @@ public class MainActivity extends Activity implements OnClickListener, OnAuthent
                 SHAREDPREF_LOGIN_KEY, login.toLowerCase()).apply();
         sharedPreferencesEditor.putString(ConnectdApiClient.
                 SHAREDPREF_CURRENT_USER_KEY, login.toLowerCase()).apply();
+        sharedPreferencesEditor.putString(ConnectdApiClient.
+                AUTH_KEY, authToken).apply();
         startActivity(new Intent(this, AuthenticatedHomeActivity.class));
     }
 
