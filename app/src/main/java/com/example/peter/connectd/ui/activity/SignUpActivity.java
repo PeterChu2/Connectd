@@ -4,14 +4,18 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.beardedhen.androidbootstrap.BootstrapEditText;
 import com.example.peter.connectd.R;
 import com.example.peter.connectd.rest.ConnectdApiClient;
 import com.example.peter.connectd.rest.ConnectdApiService;
+import com.example.peter.connectd.rest.ErrorCallBacks;
 
-public class SignUpActivity extends Activity {
+import org.json.JSONObject;
+
+public class SignUpActivity extends Activity implements ErrorCallBacks {
 
     private BootstrapEditText mEtFirstName;
     private BootstrapEditText mEtLastName;
@@ -45,6 +49,16 @@ public class SignUpActivity extends Activity {
         mConnectdApiService.signUp(this, mEtUsername.getText().toString(),
                 mEtEmail.getText().toString(), mEtFirstName.getText().toString(),
                 mEtLastName.getText().toString(), mEtPassword.getText().toString(),
-                mEtPasswordConfirmation.getText().toString());
+                mEtPasswordConfirmation.getText().toString(), this);
+    }
+
+    @Override
+    public void onError(JSONObject errors) {
+        Toast.makeText(SignUpActivity.this, errors.toString(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onError(String error) {
+        Toast.makeText(SignUpActivity.this, error, Toast.LENGTH_LONG).show();
     }
 }

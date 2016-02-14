@@ -16,9 +16,12 @@ import com.beardedhen.androidbootstrap.BootstrapEditText;
 import com.example.peter.connectd.R;
 import com.example.peter.connectd.rest.ConnectdApiClient;
 import com.example.peter.connectd.rest.ConnectdApiService;
+import com.example.peter.connectd.rest.ErrorCallBacks;
 import com.example.peter.connectd.rest.OnAuthenticateListener;
 
-public class SignInActivity extends AccountAuthenticatorActivity implements OnAuthenticateListener {
+import org.json.JSONObject;
+
+public class SignInActivity extends AccountAuthenticatorActivity implements OnAuthenticateListener, ErrorCallBacks {
     private BootstrapEditText mEtLogin;
     private BootstrapEditText mEtPassword;
     private ProgressDialog mProgressDialog;
@@ -47,7 +50,7 @@ public class SignInActivity extends AccountAuthenticatorActivity implements OnAu
         mProgressDialog.setMessage("Signing in");
         mProgressDialog.show();
         ConnectdApiService mConnectdApiService = ConnectdApiClient.getApiService();
-        mConnectdApiService.signIn(this, login, password, this);
+        mConnectdApiService.signIn(this, login, password, this, this);
     }
 
     @Override
@@ -78,5 +81,15 @@ public class SignInActivity extends AccountAuthenticatorActivity implements OnAu
         mProgressDialog.dismiss();
         Toast.makeText(this, "Invalid username or password. Check your credentials.",
                 Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onError(JSONObject errors) {
+        Toast.makeText(SignInActivity.this, errors.toString(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onError(String error) {
+        Toast.makeText(SignInActivity.this, error, Toast.LENGTH_LONG).show();
     }
 }

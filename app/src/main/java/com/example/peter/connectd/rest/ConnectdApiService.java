@@ -55,7 +55,8 @@ public interface ConnectdApiService {
      * @param onAuthenticateListener A listener to be notified when the user has successfully logged in.
      */
     void signIn(final Context context, String login, String password,
-                final OnAuthenticateListener onAuthenticateListener);
+                final OnAuthenticateListener onAuthenticateListener,
+                final ErrorCallBacks errorCallbacks);
 
     /**
      * Signs up for a new account within the app.
@@ -69,7 +70,8 @@ public interface ConnectdApiService {
      * @param passwordConfirmation Password confirmation.
      */
     void signUp(final Context context, String username, String email, String firstName,
-                String lastName, String password, String passwordConfirmation);
+                String lastName, String password, String passwordConfirmation,
+                final ErrorCallBacks errorCallBacks);
 
     /**
      * Updates a user in the Rail's database.
@@ -79,5 +81,6 @@ public interface ConnectdApiService {
      * @param listener The listener to be notified when the user is updated from the server.
      */
     void updateUser(final Context context, int id, JSONObject updateParams,
-                final OnAsyncHttpRequestCompleteListener listener);
+                    final OnAsyncHttpRequestCompleteListener listener,
+                    final ErrorCallBacks errorCallbacks);
 }

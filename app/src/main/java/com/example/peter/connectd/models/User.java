@@ -3,9 +3,11 @@ package com.example.peter.connectd.models;
 import android.content.Context;
 
 import com.example.peter.connectd.rest.ConnectdApiService;
+import com.example.peter.connectd.rest.ErrorCallBacks;
 import com.example.peter.connectd.rest.OnAsyncHttpRequestCompleteListener;
 import com.example.peter.connectd.rest.SocialApiClients;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,6 +26,7 @@ public class User {
     public static final String FIRST_NAME_KEY = "first_name";
     public static final String LAST_NAME_KEY = "last_name";
     public static final String PASSWORD_KEY = "password";
+    public static final String AUTHORIZATIONS_KEY = "authorizations";
     public static final String PASSWORD_CONFIRMATION_KEY = "password_confirmation";
     public static final String LOGIN_KEY = "login";
     public static final String REMEMBER_ME_KEY = "remember_me";
@@ -115,7 +118,7 @@ public class User {
         } catch (JSONException e) {
             // NOP
         }
-        connectdApiService.updateUser(context, mId, updateParams, (OnAsyncHttpRequestCompleteListener) context);
+        connectdApiService.updateUser(context, mId, updateParams, (OnAsyncHttpRequestCompleteListener) context, (ErrorCallBacks) context);
     }
 
     public void addAuthorization(Context context, ConnectdApiService connectdApiService, Authorization auth) {
@@ -128,7 +131,7 @@ public class User {
         } catch (JSONException e) {
             // NOP
         }
-        connectdApiService.updateUser(context, mId, updateParams, (OnAsyncHttpRequestCompleteListener) context);
+        connectdApiService.updateUser(context, mId, updateParams, (OnAsyncHttpRequestCompleteListener) context, (ErrorCallBacks) context);
     }
 
     public static class Builder {
@@ -159,6 +162,10 @@ public class User {
                 mUsername = user.getString(USERNAME_KEY);
             if(user.has(EMAIL_KEY))
                 mEmail = user.getString(EMAIL_KEY);
+            if((user.has(AUTHORIZATIONS_KEY))) {
+                JSONArray auths = user.getJSONArray(AUTHORIZATIONS_KEY);
+                //(AUTHORIZATIONS_KEY);
+            }
         }
 
         public Builder setFirstName(String name) {

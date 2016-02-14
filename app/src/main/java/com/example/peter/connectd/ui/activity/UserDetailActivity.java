@@ -118,7 +118,7 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
                         } catch (JSONException e) {
                             // NOP
                         }
-                        mConnectedApiService.updateUser(UserDetailActivity.this, mCurrentUser.getId(), updateParams, UserDetailActivity.this);
+                        mConnectedApiService.updateUser(UserDetailActivity.this, mCurrentUser.getId(), updateParams, UserDetailActivity.this, UserDetailActivity.this);
                     } else {
                         if (!User.isUsernameValid(mEtUsername.getText().toString()) &&
                                 !User.isEmailValid(mEtEmail.getText().toString())) {
@@ -487,5 +487,15 @@ public class UserDetailActivity extends Activity implements OnAsyncHttpRequestCo
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void onError(JSONObject errors) {
+        Toast.makeText(UserDetailActivity.this, errors.toString(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onError(String error) {
+        Toast.makeText(UserDetailActivity.this, error, Toast.LENGTH_LONG).show();
     }
 }

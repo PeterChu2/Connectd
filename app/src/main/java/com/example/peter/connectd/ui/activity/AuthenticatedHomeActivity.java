@@ -28,6 +28,8 @@ import com.example.peter.connectd.rest.ConnectdApiService;
 import com.example.peter.connectd.rest.OnAsyncHttpRequestCompleteListener;
 import com.quinny898.library.persistentsearch.SearchBox;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -212,5 +214,15 @@ public class AuthenticatedHomeActivity extends Activity implements NfcAdapter.Cr
                 });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    @Override
+    public void onError(JSONObject errors) {
+        Toast.makeText(AuthenticatedHomeActivity.this, errors.toString(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onError(String error) {
+        Toast.makeText(AuthenticatedHomeActivity.this, error, Toast.LENGTH_LONG).show();
     }
 }

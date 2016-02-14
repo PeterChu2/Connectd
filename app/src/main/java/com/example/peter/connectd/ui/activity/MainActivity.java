@@ -10,20 +10,26 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.dynamoui.android.core.Dynamo;
 import com.example.peter.connectd.R;
 import com.example.peter.connectd.rest.ConnectdApiClient;
 import com.example.peter.connectd.rest.ConnectdApiService;
+import com.example.peter.connectd.rest.ErrorCallBacks;
 import com.example.peter.connectd.rest.OnAuthenticateListener;
 
-public class MainActivity extends Activity implements OnClickListener, OnAuthenticateListener {
+import org.json.JSONObject;
+
+public class MainActivity extends Activity implements OnClickListener, OnAuthenticateListener, ErrorCallBacks {
 
     private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Dynamo.getContext().init(this, "Connectd");
         setContentView(R.layout.activity_main);
 
         BootstrapButton btnSignIn = (BootstrapButton) findViewById(R.id.btnSignIn);
@@ -47,7 +53,7 @@ public class MainActivity extends Activity implements OnClickListener, OnAuthent
                         mProgressDialog.setMessage("Signing in");
                         mProgressDialog.show();
                         ConnectdApiService mConnectdApiService = ConnectdApiClient.getApiService();
-                        mConnectdApiService.signIn(this, accounts[0].name, password, this);
+                        mConnectdApiService.signIn(this, accounts[0].name, password, this, this);
                     }
                 }
                 else {
@@ -82,5 +88,16 @@ public class MainActivity extends Activity implements OnClickListener, OnAuthent
         mProgressDialog.dismiss();
         Intent i = new Intent(this, SignInActivity.class);
         startActivity(i);
+    }
+
+    @Override
+    public void onError(JSONObject errors) {
+        Toast.makeText(MainActivity.this, errors.toString(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onError(String error) {
+        Toast.makeText(MainActivity.this, error, Toast.LENGTH_LONG).show();
+        mProgressDialog.dismiss();
     }
 }

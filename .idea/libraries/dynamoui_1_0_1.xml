@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="dynamoui-1.0.1">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.dynamoui.core/dynamoui/1.0.1/res" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.dynamoui.core/dynamoui/1.0.1/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.dynamoui.core/dynamoui/1.0.1/ad0280a2bedb06b7cd9b31d3f18c80c68eda26e1/dynamoui-1.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

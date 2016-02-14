@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.peter.connectd.R;
 import com.example.peter.connectd.models.SearchResult;
@@ -12,6 +13,8 @@ import com.example.peter.connectd.rest.ConnectdApiClient;
 import com.example.peter.connectd.rest.ConnectdApiService;
 import com.example.peter.connectd.rest.OnAsyncHttpRequestCompleteListener;
 import com.example.peter.connectd.ui.adapters.ResultsListAdapter;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,5 +60,15 @@ public class ResultsActivity extends Activity implements OnAsyncHttpRequestCompl
     @Override
     public void onUserLoadFailed(String error) {
         // NOP
+    }
+
+    @Override
+    public void onError(JSONObject errors) {
+        Toast.makeText(ResultsActivity.this, errors.toString(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onError(String error) {
+        Toast.makeText(ResultsActivity.this, error, Toast.LENGTH_LONG).show();
     }
 }

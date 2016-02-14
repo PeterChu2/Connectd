@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.example.peter.connectd.models.SearchResult;
 import com.example.peter.connectd.models.User;
@@ -109,7 +108,7 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
 
     @Override
     public void signIn(final Context context, final String login, String password,
-                       final OnAuthenticateListener authenticateListener) {
+                       final OnAuthenticateListener authenticateListener, final ErrorCallBacks errorCallbacks) {
         JSONObject params = new JSONObject();
         JSONObject userParams = new JSONObject();
         try {
@@ -135,6 +134,14 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
+                String login = null;
+                try {
+                    login = response.has("username") ? response.getString("username") : response.getString("email");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                String authToken = "";//TODO
+                authenticateListener.onAuthenticate(login, authToken);
             }
 
             @Override
@@ -145,6 +152,12 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                try {
+                    JSONObject errors = errorResponse.getJSONObject("errors");
+                    ((ErrorCallBacks) context).onError(errors);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -155,7 +168,9 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 // NOP
-                Log.d("PETER", "TeS");
+                // invalid sign in credentials
+                // LOG ERROR HERE
+                errorCallbacks.onError("Error logging in. Check your credentials.");
             }
         };
 
@@ -172,7 +187,7 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
     @Override
     public void signUp(final Context context, String username, String email,
                        String firstName, String lastName, String password,
-                       String passwordConfirmation) {
+                       String passwordConfirmation, final ErrorCallBacks errorCallbacks) {
         JSONObject params = new JSONObject();
         JSONObject userParams = new JSONObject();
 
@@ -191,8 +206,17 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
         JsonHttpResponseHandler httpResponseHandler = new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                if (statusCode == 200 || statusCode == 302) {
-                    String login = "";//get login here;
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                    String login = null;//get login here;
+                    try {
+                        login = response.has("username") ? response.getString("username") : response.getString("email");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     String auth = ""; //get auth here
 
                     SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager
@@ -200,24 +224,40 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
 
                     sharedPreferencesEditor.putString(ConnectdApiClient.
                             AUTH_KEY, auth).apply();
-                    sharedPreferencesEditor.putString(ConnectdApiClient.
-                            SHAREDPREF_LOGIN_KEY, login.toLowerCase()).apply();
-                    sharedPreferencesEditor.putString(ConnectdApiClient.
-                            SHAREDPREF_CURRENT_USER_KEY, login.toLowerCase()).apply();
-
+                    if(login != null) {
+                        sharedPreferencesEditor.putString(ConnectdApiClient.
+                                SHAREDPREF_LOGIN_KEY, login.toLowerCase()).apply();
+                        sharedPreferencesEditor.putString(ConnectdApiClient.
+                                SHAREDPREF_CURRENT_USER_KEY, login.toLowerCase()).apply();
+                    }
 
                     context.startActivity(new Intent(context, AuthenticatedHomeActivity.class));
-                }
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                super.onSuccess(statusCode, headers, response);
             }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 super.onSuccess(statusCode, headers, response);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                try {
+                    JSONObject errors = errorResponse.getJSONObject("errors");
+                    errorCallbacks.onError(errors);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
             }
         };
 
@@ -233,7 +273,7 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
 
     @Override
     public void updateUser(final Context context, int id, JSONObject updateParams,
-                       final OnAsyncHttpRequestCompleteListener listener) {
+                       final OnAsyncHttpRequestCompleteListener listener, final ErrorCallBacks errorCallbacks) {
         mAsyncHttpClient.addHeader("Accept", "application/json");
         mAsyncHttpClient.addHeader("Content-Type", "application/json");
         StringEntity entity = null;
@@ -262,6 +302,12 @@ public class ConnectdApiServiceImpl implements ConnectdApiService {
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                         super.onFailure(statusCode, headers, throwable, errorResponse);
+                        try {
+                            JSONObject errors = errorResponse.getJSONObject("errors");
+                            errorCallbacks.onError(errors);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
     }

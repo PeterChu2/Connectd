@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Class that notifies the listener of the completion of an {@link com.loopj.android.http.AsyncHttpRequest}.
  */
-public interface OnAsyncHttpRequestCompleteListener {
+public interface OnAsyncHttpRequestCompleteListener extends ErrorCallBacks {
     /**
      * Invoked when a {@link User} has been fetched from the database.
      * @param user a {@link User} fetched from the database.
